@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
     LayoutDashboard,
     ArrowLeftRight,
@@ -26,7 +26,7 @@ const menuItems = [
     { name: "Settings", href: "/settings", icon: Settings },
 ];
 
-import { useRouter } from "next/navigation";
+
 
 export default function Sidebar() {
     const pathname = usePathname();

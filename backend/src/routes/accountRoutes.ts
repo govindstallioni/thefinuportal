@@ -122,20 +122,21 @@ router.get('/get-by-email/:email', async (req, res) => {
     }
 });
 
-// Update account name by account_id
-router.patch('/update-name/:account_id', async (req, res) => {
+// Update account details by account_id
+router.patch('/update-account/:account_id', async (req, res) => {
     try {
         const { account_id } = req.params;
-        const { name } = req.body;
+        const updateData = req.body;
 
-        if (!name) {
-            return res.status(400).json({ message: 'Name is required' });
-        }
+        // Prevent updating sensitive official fields if necessary
+        delete updateData.account_id;
+        delete updateData.account_name;
+        delete updateData.user_id;
 
         const account = await Account.findOneAndUpdate(
             { account_id },
-            { $set: { name } },
-            { new: true }
+            { $set: updateData },
+            { new: true, runValidators: true }
         );
 
         if (!account) {

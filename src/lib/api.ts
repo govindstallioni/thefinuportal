@@ -31,6 +31,6 @@ export const deleteTransaction = (id: string) => api.delete(`/transactions/${id}
 export const getAccounts = () => api.get('/accounts');
 export const getAccountById = (id: string) => api.get(`/accounts/${id}`);
 export const createAccount = (data: Record<string, unknown>) => api.post('/accounts', data);
-export const updateAccountName = (accountId: string, name: string) => api.patch(`/accounts/update-name/${accountId}`, { name });
+export const updateAccount = (accountId: string, data: Record<string, unknown>) => api.patch(`/accounts/update-account/${accountId}`, data);
 
 export default api;

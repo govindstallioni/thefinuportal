@@ -3,6 +3,38 @@ import Settings from '../models/Settings.js';
 
 const router = express.Router();
 
+// Get public settings (safe for app/frontend usage)
+router.get('/public', async (req, res) => {
+    try {
+        let settings = await Settings.findOne();
+        if (!settings) {
+            // Return defaults if no settings exist
+            return res.json({
+                stripePublicKey: '',
+                stripePaymentMode: 'sandbox',
+                appInstruction: '',
+                appEmail: '',
+                spreadsheetTemplateUrl: '',
+                plaidEnvironment: 'sandbox'
+            });
+        }
+
+        // Return only safe public fields
+        res.json({
+            stripePublicKey: settings.stripePublicKey,
+            stripeSecretKey: settings.stripeSecretKey,
+            stripePaymentMode: settings.stripePaymentMode,
+            appInstruction: settings.appInstruction,
+            appEmail: settings.appEmail,
+            spreadsheetTemplateUrl: settings.spreadsheetTemplateUrl,
+            plaidEnvironment: settings.plaidEnvironment,
+            plaidClientKey: settings.plaidClientKey // Client Key (ID) is generally safe, Secret is not
+        });
+    } catch (err: any) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 // Get settings
 router.get('/', async (req, res) => {
     try {

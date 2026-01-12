@@ -9,6 +9,7 @@ import accountRoutes from './routes/accountRoutes.js';
 import settingsRoutes from './routes/settingsRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import paymentRoutes from './routes/paymentRoutes.js';
 
 console.log('Starting server...');
 dotenv.config();
@@ -26,11 +27,16 @@ app.use(helmet());
 app.use(morgan('dev'));
 
 // Routes
-app.use('/api/transactions', transactionRoutes);
-app.use('/api/accounts', accountRoutes);
-app.use('/api/settings', settingsRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
+const apiRouter = express.Router();
+apiRouter.use('/transactions', transactionRoutes);
+apiRouter.use('/accounts', accountRoutes);
+apiRouter.use('/settings', settingsRoutes);
+apiRouter.use('/auth', authRoutes);
+apiRouter.use('/users', userRoutes);
+apiRouter.use('/payment', paymentRoutes);
+
+app.use('/api', apiRouter);
+app.use('/', apiRouter);
 
 app.get('/', (req, res) => {
     res.send('Financial Portal API is running');

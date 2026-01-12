@@ -12,11 +12,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-import AdminLayout from "@/components/AdminLayout";
-
 export const metadata: Metadata = {
-  title: "FinuPortal | Admin",
-  description: "Financial management admin portal",
+  title: "FinuPortal",
+  description: "Financial management portal",
 };
 
 export default function RootLayout({
@@ -27,9 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 text-slate-900`}>
-        <AdminLayout>
-          {children}
-        </AdminLayout>
+        {children}
       </body>
     </html>
   );

@@ -9,7 +9,8 @@ import {
     BarChart3,
     Settings,
     CircleDollarSign,
-    LogOut
+    LogOut,
+    CreditCard
 } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -22,6 +23,7 @@ const menuItems = [
     { name: "Dashboard", href: "/", icon: LayoutDashboard },
     { name: "Transactions", href: "/transactions", icon: ArrowLeftRight },
     { name: "Accounts", href: "/accounts", icon: Wallet },
+    { name: "Subscriptions", href: "/subscriptions", icon: CreditCard },
     { name: "Reports", href: "/reports", icon: BarChart3 },
     { name: "Settings", href: "/settings", icon: Settings },
 ];

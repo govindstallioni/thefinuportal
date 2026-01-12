@@ -62,6 +62,7 @@ router.post('/validate-user', async (req, res) => {
             data: {
                 userId: user._id,
                 email: user.email,
+                isSubscribed: user.isSubscribed,
                 userCreated,
                 spreadsheetCreated
             }

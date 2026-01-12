@@ -8,6 +8,9 @@ export interface ISettings extends Document {
     appInstruction: string;
     notificationEmail: string;
     appEmail: string;
+    stripePublicKey: string;
+    stripeSecretKey: string;
+    stripePaymentMode: 'sandbox' | 'production';
 }
 
 const SettingsSchema: Schema = new Schema({
@@ -18,6 +21,9 @@ const SettingsSchema: Schema = new Schema({
     appInstruction: { type: String, default: '' },
     notificationEmail: { type: String, default: '' },
     appEmail: { type: String, default: '' },
+    stripePublicKey: { type: String, default: '' },
+    stripeSecretKey: { type: String, default: '' },
+    stripePaymentMode: { type: String, enum: ['sandbox', 'production'], default: 'sandbox' },
 }, { timestamps: true });
 
 export default mongoose.model<ISettings>('Settings', SettingsSchema);

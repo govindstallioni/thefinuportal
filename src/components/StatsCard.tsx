@@ -1,9 +1,8 @@
 import {
     TrendingUp,
-    TrendingDown,
-    DollarSign,
-    CreditCard
+    TrendingDown
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -16,7 +15,7 @@ interface StatsCardProps {
     amount: string;
     trend: "up" | "down";
     percentage: string;
-    icon: any;
+    icon: LucideIcon;
     color: string;
 }
 

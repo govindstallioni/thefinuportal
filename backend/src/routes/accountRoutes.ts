@@ -122,6 +122,32 @@ router.get('/get-by-email/:email', async (req, res) => {
     }
 });
 
+// Update account name by account_id
+router.patch('/update-name/:account_id', async (req, res) => {
+    try {
+        const { account_id } = req.params;
+        const { name } = req.body;
+
+        if (!name) {
+            return res.status(400).json({ message: 'Name is required' });
+        }
+
+        const account = await Account.findOneAndUpdate(
+            { account_id },
+            { $set: { name } },
+            { new: true }
+        );
+
+        if (!account) {
+            return res.status(404).json({ message: 'Account not found' });
+        }
+
+        res.json(account);
+    } catch (err: any) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 // Get account by account_id
 router.get('/:account_id', async (req, res) => {
     try {

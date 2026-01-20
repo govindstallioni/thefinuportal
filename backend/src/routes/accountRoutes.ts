@@ -46,50 +46,53 @@ router.post('/store-plaid', async (req, res) => {
             return res.status(400).json({ message: 'Accounts array is required' });
         }
 
-        const accountsToSave = accounts.map((acc: any) => {
+        const accountsResults = await Promise.all(accounts.map(async (acc: any) => {
             // Flexible mapping to handle different Plaid metadata/account structures
             const instId = metadata?.institution_id || metadata?.institution?.institution_id || acc.institution_id;
             const instName = metadata?.institution_name || metadata?.institution?.name || acc.institution_name || req.body.institution_name;
             const accType = acc.type || acc.account_type;
             const accSubtype = acc.subtype || acc.account_subtype;
 
-            const mapped = {
+            const filter = {
                 user_id: user._id,
-                account_id: acc.id || acc.account_id,
-                access_token: access_token,
-                item_id: plaid_item_id,
                 institution_id: instId,
-                institution_name: instName,
                 mask: acc.mask,
-                account_name: acc.name,
-                account_type: accType,
-                account_subtype: accSubtype,
-                // Also populate general fields for compatibility
-                name: acc.name,
-                type: accType,
-                // Defaults
-                is_linked: false,
-                linked_date: null,
-                next_cursor: null,
-                status: true,
-                is_update: false,
-                balance: 0,
-                color: '#3b82f6'
+                account_name: acc.name
             };
-            return mapped;
-        });
 
-        console.log('Final accounts to save:', JSON.stringify(accountsToSave, null, 2));
-        const result = await Account.insertMany(accountsToSave);
-        console.log('Save result IDs:', result.map(r => r._id));
+            const update = {
+                $set: {
+                    account_id: acc.id || acc.account_id,
+                    access_token: access_token,
+                    item_id: plaid_item_id,
+                },
+                $setOnInsert: {
+                    institution_name: instName,
+                    account_type: accType,
+                    account_subtype: accSubtype,
+                    name: acc.name,
+                    type: accType,
+                    is_linked: false,
+                    linked_date: null,
+                    status: true,
+                    is_update: false,
+                    balance: 0,
+                    color: '#3b82f6'
+                }
+            };
+
+            return Account.findOneAndUpdate(filter, update, { upsert: true, new: true, runValidators: true });
+        }));
+
+        console.log('Processed accounts result IDs:', accountsResults.map(r => r?._id));
 
         res.status(200).json({
-            message: 'Accounts stored successfully',
-            count: accountsToSave.length,
+            message: 'Accounts processed successfully',
+            count: accountsResults.length,
             userId: user._id
         });
     } catch (err: any) {
-        console.error('Error storing plaid accounts:', err);
+        console.error('Error processing plaid accounts:', err);
         // Detailed error logging for mongoose validation errors
         if (err.name === 'ValidationError') {
             console.error('Validation Errors:', err.errors);

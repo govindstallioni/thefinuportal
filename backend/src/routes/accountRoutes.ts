@@ -101,6 +101,30 @@ router.post('/store-plaid', async (req, res) => {
     }
 });
 
+// Plaid Webhook Endpoint
+router.post('/plaid-webhook', async (req, res) => {
+    try {
+        const { webhook_code, item_id } = req.body;
+
+        console.log(`Received Plaid webhook: ${webhook_code} for item: ${item_id}`);
+
+        if (webhook_code === 'SYNC_UPDATES_AVAILABLE') {
+            const result = await Account.updateMany(
+                { item_id: item_id },
+                { $set: { is_update: true } }
+            );
+            console.log(`Updated ${result.modifiedCount} accounts for item_id: ${item_id} to is_update: true`);
+        }
+
+        // Always return 200 to Plaid to acknowledge receipt
+        res.status(200).json({ received: true });
+    } catch (err: any) {
+        console.error('Error handling Plaid webhook:', err);
+        // Still return 200/400/500? Plaid recommends 200 if you received it but failed to process to avoid retries if it's not a temporary failure
+        res.status(500).json({ message: err.message });
+    }
+});
+
 // Get accounts by user email (Public API)
 router.get('/get-by-email/:email', async (req, res) => {
     try {

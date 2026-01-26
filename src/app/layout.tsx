@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FinuPortal",
+  title: "ThefinU",
   description: "Financial management portal",
 };
 

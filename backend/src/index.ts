@@ -10,6 +10,7 @@ import settingsRoutes from './routes/settingsRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
+import dashboardRoutes from './routes/dashboardRoutes.js';
 
 console.log('Starting server...');
 dotenv.config();
@@ -34,6 +35,7 @@ apiRouter.use('/settings', settingsRoutes);
 apiRouter.use('/auth', authRoutes);
 apiRouter.use('/users', userRoutes);
 apiRouter.use('/payment', paymentRoutes);
+apiRouter.use('/dashboard', dashboardRoutes);
 
 app.use('/api', apiRouter);
 app.use('/', apiRouter);

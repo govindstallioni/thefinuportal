@@ -68,7 +68,7 @@ export default function SubscriptionsPage() {
                         <input
                             type="text"
                             placeholder="Search by email or ID..."
-                            className="w-full rounded-lg border border-slate-200 pl-10 pr-4 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                            className="w-full rounded-lg border border-slate-200 pl-10 pr-4 py-2 text-sm focus:border-secondary focus:outline-none"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -77,7 +77,7 @@ export default function SubscriptionsPage() {
 
                 {loading ? (
                     <div className="flex justify-center p-8">
-                        <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                        <Loader2 className="h-8 w-8 animate-spin text-secondary" />
                     </div>
                 ) : (
                     <table className="w-full text-left">
@@ -103,8 +103,8 @@ export default function SubscriptionsPage() {
                                     <tr key={sub._id} className="hover:bg-slate-50 transition-colors">
                                         <td className="px-6 py-4">
                                             <div className="flex items-center">
-                                                <div className="mr-3 flex h-8 w-8 items-center justify-center rounded-full bg-blue-100">
-                                                    <CreditCard className="h-4 w-4 text-blue-600" />
+                                                <div className="mr-3 flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
+                                                    <CreditCard className="h-4 w-4 text-primary" />
                                                 </div>
                                                 <div>
                                                     <p className="font-medium text-slate-900">{sub.paymentEmail}</p>
@@ -117,8 +117,8 @@ export default function SubscriptionsPage() {
                                         </td>
                                         <td className="px-6 py-4">
                                             <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${sub.status === 'active' || sub.status === 'paid'
-                                                    ? 'bg-emerald-100 text-emerald-800'
-                                                    : 'bg-yellow-100 text-yellow-800'
+                                                ? 'bg-emerald-100 text-emerald-800'
+                                                : 'bg-yellow-100 text-yellow-800'
                                                 }`}>
                                                 {sub.status}
                                             </span>

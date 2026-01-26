@@ -32,11 +32,11 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-slate-950 p-6">
+        <div className="flex min-h-screen items-center justify-center bg-primary p-6">
             <div className="w-full max-w-md">
                 <div className="mb-8 flex flex-col items-center justify-center text-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 shadow-lg shadow-blue-500/20">
-                        <CircleDollarSign className="h-10 w-10 text-white" />
+                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-lg overflow-hidden">
+                        <img src="/logo-icon.png" alt="Icon" className="h-full w-full object-cover" />
                     </div>
                     <h1 className="mt-6 text-3xl font-bold tracking-tight text-white">Welcome back</h1>
                     <p className="mt-2 text-slate-400">Please enter your details to sign in.</p>
@@ -57,7 +57,7 @@ export default function LoginPage() {
                                 <input
                                     type="email"
                                     required
-                                    className="block w-full rounded-lg border border-slate-800 bg-slate-950 px-10 py-3 text-white placeholder-slate-600 focus:border-blue-500 focus:outline-none transition-colors"
+                                    className="block w-full rounded-lg border border-slate-800 bg-slate-950 px-10 py-3 text-white placeholder-slate-600 focus:border-secondary focus:outline-none transition-colors"
                                     placeholder="admin@example.com"
                                     value={formData.email}
                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -72,7 +72,7 @@ export default function LoginPage() {
                                 <input
                                     type="password"
                                     required
-                                    className="block w-full rounded-lg border border-slate-800 bg-slate-950 px-10 py-3 text-white placeholder-slate-600 focus:border-blue-500 focus:outline-none transition-colors"
+                                    className="block w-full rounded-lg border border-slate-800 bg-slate-950 px-10 py-3 text-white placeholder-slate-600 focus:border-secondary focus:outline-none transition-colors"
                                     placeholder="••••••••"
                                     value={formData.password}
                                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
@@ -83,7 +83,7 @@ export default function LoginPage() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-3 text-sm font-bold text-white hover:bg-blue-700 transition-all disabled:opacity-50 shadow-lg shadow-blue-500/20"
+                            className="flex w-full items-center justify-center rounded-lg bg-secondary px-4 py-3 text-sm font-bold text-white hover:opacity-90 transition-all disabled:opacity-50 shadow-lg shadow-secondary/20"
                         >
                             {loading ? (
                                 <Loader2 className="h-5 w-5 animate-spin" />
@@ -95,7 +95,7 @@ export default function LoginPage() {
                 </div>
 
                 <p className="mt-8 text-center text-xs text-slate-500 uppercase tracking-widest">
-                    Security Protected • FinuPortal Admin
+                    Security Protected • ThefinU Admin
                 </p>
             </div>
         </div>

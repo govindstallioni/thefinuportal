@@ -60,7 +60,7 @@ export default function SettingsPage() {
     if (loading) {
         return (
             <div className="flex h-full items-center justify-center p-8">
-                <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                <Loader2 className="h-8 w-8 animate-spin text-secondary" />
             </div>
         );
     }
@@ -85,7 +85,7 @@ export default function SettingsPage() {
                 {/* Plaid Configuration */}
                 <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
                     <div className="mb-4 flex items-center border-b border-slate-100 pb-4">
-                        <Key className="mr-2 h-5 w-5 text-blue-600" />
+                        <Key className="mr-2 h-5 w-5 text-secondary" />
                         <h2 className="text-lg font-bold text-slate-900">Plaid Integration</h2>
                     </div>
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -96,7 +96,7 @@ export default function SettingsPage() {
                                 name="plaidClientKey"
                                 value={settings.plaidClientKey}
                                 onChange={handleChange}
-                                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-secondary focus:outline-none"
                                 placeholder="Enter client key"
                             />
                         </div>
@@ -107,7 +107,7 @@ export default function SettingsPage() {
                                 name="plaidSecretKey"
                                 value={settings.plaidSecretKey}
                                 onChange={handleChange}
-                                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-secondary focus:outline-none"
                                 placeholder="Enter secret key"
                             />
                         </div>
@@ -130,7 +130,7 @@ export default function SettingsPage() {
                                 name="plaidWebhookUrl"
                                 value={settings.plaidWebhookUrl || ""}
                                 onChange={handleChange}
-                                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-secondary focus:outline-none"
                                 placeholder="https://your-domain.com/api/accounts/plaid-webhook"
                             />
                             <p className="mt-1 text-xs text-slate-500 flex items-center">
@@ -144,7 +144,7 @@ export default function SettingsPage() {
                 {/* Stripe Configuration */}
                 <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
                     <div className="mb-4 flex items-center border-b border-slate-100 pb-4">
-                        <CreditCard className="mr-2 h-5 w-5 text-blue-600" />
+                        <CreditCard className="mr-2 h-5 w-5 text-secondary" />
                         <h2 className="text-lg font-bold text-slate-900">Stripe Integration</h2>
                     </div>
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -155,7 +155,7 @@ export default function SettingsPage() {
                                 name="stripePublicKey"
                                 value={settings.stripePublicKey}
                                 onChange={handleChange}
-                                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-secondary focus:outline-none"
                                 placeholder="pk_test_..."
                             />
                         </div>
@@ -166,7 +166,7 @@ export default function SettingsPage() {
                                 name="stripeSecretKey"
                                 value={settings.stripeSecretKey}
                                 onChange={handleChange}
-                                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-secondary focus:outline-none"
                                 placeholder="sk_test_..."
                             />
                         </div>
@@ -188,7 +188,7 @@ export default function SettingsPage() {
                 {/* Spreadsheet & App Config */}
                 <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
                     <div className="mb-4 flex items-center border-b border-slate-100 pb-4">
-                        <Globe className="mr-2 h-5 w-5 text-blue-600" />
+                        <Globe className="mr-2 h-5 w-5 text-secondary" />
                         <h2 className="text-lg font-bold text-slate-900">External Connections</h2>
                     </div>
                     <div className="space-y-6">
@@ -201,7 +201,7 @@ export default function SettingsPage() {
                                     name="spreadsheetTemplateUrl"
                                     value={settings.spreadsheetTemplateUrl}
                                     onChange={handleChange}
-                                    className="w-full rounded-lg border border-slate-200 pl-10 pr-4 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                                    className="w-full rounded-lg border border-slate-200 pl-10 pr-4 py-2 text-sm focus:border-secondary focus:outline-none"
                                     placeholder="https://docs.google.com/spreadsheets/..."
                                 />
                             </div>
@@ -213,7 +213,7 @@ export default function SettingsPage() {
                                 value={settings.appInstruction}
                                 onChange={handleChange}
                                 rows={4}
-                                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-secondary focus:outline-none"
                                 placeholder="Enter instructions for the app users..."
                             />
                         </div>
@@ -223,7 +223,7 @@ export default function SettingsPage() {
                 {/* Email Communications */}
                 <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
                     <div className="mb-4 flex items-center border-b border-slate-100 pb-4">
-                        <Mail className="mr-2 h-5 w-5 text-blue-600" />
+                        <Mail className="mr-2 h-5 w-5 text-secondary" />
                         <h2 className="text-lg font-bold text-slate-900">Email Settings</h2>
                     </div>
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -234,7 +234,7 @@ export default function SettingsPage() {
                                 name="notificationEmail"
                                 value={settings.notificationEmail}
                                 onChange={handleChange}
-                                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-secondary focus:outline-none"
                                 placeholder="alerts@example.com"
                             />
                         </div>
@@ -245,7 +245,7 @@ export default function SettingsPage() {
                                 name="appEmail"
                                 value={settings.appEmail}
                                 onChange={handleChange}
-                                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-secondary focus:outline-none"
                                 placeholder="system@example.com"
                             />
                         </div>
@@ -256,7 +256,7 @@ export default function SettingsPage() {
                     <button
                         type="submit"
                         disabled={saving}
-                        className="flex items-center rounded-lg bg-blue-600 px-8 py-3 text-sm font-bold text-white hover:bg-blue-700 transition-all disabled:opacity-50 shadow-md"
+                        className="flex items-center rounded-lg bg-primary px-8 py-3 text-sm font-bold text-white hover:opacity-90 transition-all disabled:opacity-50 shadow-md"
                     >
                         {saving ? (
                             <>

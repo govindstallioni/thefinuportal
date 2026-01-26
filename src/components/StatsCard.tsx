@@ -35,8 +35,8 @@ export default function StatsCard({ title, amount, trend, percentage, icon: Icon
                 </div>
             </div>
             <div className="mt-4">
-                <h3 className="text-sm font-medium text-slate-500">{title}</h3>
-                <p className="text-2xl font-bold text-slate-900">{amount}</p>
+                <h3 className="text-sm font-medium text-slate-500 uppercase tracking-wider">{title}</h3>
+                <p className="text-3xl font-extrabold text-primary mt-1">{amount}</p>
             </div>
         </div>
     );

@@ -5,8 +5,8 @@ export default function CancelPage() {
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
             <div className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-8 text-center shadow-xl transition-all duration-300 hover:shadow-2xl">
-                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-amber-100">
-                    <AlertCircle className="h-10 w-10 text-amber-600" />
+                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-white shadow-md overflow-hidden">
+                    <img src="/logo-icon.png" alt="Cancel Logo" className="h-full w-full object-cover grayscale" />
                 </div>
 
                 <h1 className="mb-2 text-3xl font-bold tracking-tight text-gray-900">
@@ -20,7 +20,7 @@ export default function CancelPage() {
                 <div className="flex flex-col space-y-3">
                     <Link
                         href="/"
-                        className="flex w-full items-center justify-center rounded-lg bg-gray-900 px-5 py-3 text-center text-sm font-medium text-white transition-colors hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-300"
+                        className="flex w-full items-center justify-center rounded-lg bg-primary px-5 py-3 text-center text-sm font-medium text-white transition-all hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-secondary/20"
                     >
                         <ArrowLeft className="mr-2 h-4 w-4" />
                         Return to Home

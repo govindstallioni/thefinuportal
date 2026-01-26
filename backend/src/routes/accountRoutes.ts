@@ -140,7 +140,7 @@ router.get('/get-by-email/:email', async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        const accounts = await Account.find({ user_id: user._id });
+        const accounts = await Account.find({ user_id: user._id, status: true });
 
         res.status(200).json(accounts);
     } catch (err: any) {

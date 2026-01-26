@@ -52,7 +52,7 @@ export default function AccountsPage() {
                         <Download className="mr-2 h-4 w-4" />
                         Export
                     </button>
-                    <button className="flex items-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors">
+                    <button className="flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white hover:opacity-90 transition-colors">
                         Refresh List
                     </button>
                 </div>
@@ -65,7 +65,7 @@ export default function AccountsPage() {
                         <input
                             type="text"
                             placeholder="Search by name, mask or institution..."
-                            className="w-full rounded-lg border border-slate-200 pl-10 pr-4 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                            className="w-full rounded-lg border border-slate-200 pl-10 pr-4 py-2 text-sm focus:border-secondary focus:outline-none"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -81,7 +81,7 @@ export default function AccountsPage() {
                 <div className="overflow-x-auto">
                     {isLoading ? (
                         <div className="flex h-32 items-center justify-center">
-                            <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-t-transparent"></div>
+                            <div className="h-8 w-8 animate-spin rounded-full border-4 border-secondary border-t-transparent"></div>
                         </div>
                     ) : (
                         <table className="w-full text-left">
@@ -101,8 +101,8 @@ export default function AccountsPage() {
                                         <tr key={acc._id} className="hover:bg-slate-50 transition-colors">
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center">
-                                                    <div className="mr-3 flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100">
-                                                        <Wallet className="h-4 w-4 text-blue-600" />
+                                                    <div className="mr-3 flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
+                                                        <Wallet className="h-4 w-4 text-primary" />
                                                     </div>
                                                     <div>
                                                         <p className="font-medium text-slate-900">{acc.account_name || acc.name}</p>

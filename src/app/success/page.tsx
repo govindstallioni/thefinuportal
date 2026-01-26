@@ -37,7 +37,7 @@ function SuccessContent() {
     if (loading) {
         return (
             <div className="flex flex-col items-center justify-center min-h-[50vh]">
-                <Loader2 className="h-10 w-10 animate-spin text-blue-600 mb-4" />
+                <Loader2 className="h-10 w-10 animate-spin text-secondary mb-4" />
                 <p className="text-slate-500">Verifying your payment...</p>
             </div>
         );
@@ -53,7 +53,7 @@ function SuccessContent() {
                 <p className="mb-8 text-gray-500">{error}</p>
                 <Link
                     href="/"
-                    className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-5 py-3 text-sm font-medium text-white hover:bg-blue-700"
+                    className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-3 text-sm font-medium text-white hover:opacity-90 transition-all border border-primary"
                 >
                     Return Home
                 </Link>
@@ -63,8 +63,8 @@ function SuccessContent() {
 
     return (
         <div className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-8 text-center shadow-xl transition-all duration-300 hover:shadow-2xl">
-            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
-                <CheckCircle className="h-10 w-10 text-green-600 animate-bounce" />
+            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-white shadow-md overflow-hidden animate-bounce">
+                <img src="/logo-icon.png" alt="Success Logo" className="h-full w-full object-cover" />
             </div>
 
             <h1 className="mb-2 text-3xl font-bold tracking-tight text-gray-900">
@@ -107,7 +107,7 @@ function SuccessContent() {
             <div className="flex flex-col space-y-3">
                 <Link
                     href="/"
-                    className="flex w-full items-center justify-center rounded-lg bg-blue-600 px-5 py-3 text-center text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                    className="flex w-full items-center justify-center rounded-lg bg-primary px-5 py-3 text-center text-sm font-medium text-white transition-all hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-secondary/20"
                 >
                     <Home className="mr-2 h-4 w-4" />
                     Return to Home

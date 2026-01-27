@@ -18,7 +18,7 @@ function cn(...inputs: ClassValue[]) {
 }
 
 const menuItems = [
-    { name: "Dashboard", href: "/", icon: LayoutDashboard },
+    { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
     { name: "Accounts", href: "/accounts", icon: Wallet },
     { name: "Subscriptions", href: "/subscriptions", icon: CreditCard },
     { name: "Settings", href: "/settings", icon: Settings },

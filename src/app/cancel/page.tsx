@@ -1,40 +1,68 @@
-import { AlertCircle, ArrowLeft, HelpCircle } from "lucide-react";
-import Link from "next/link";
+"use client";
 
-export default function CancelPage() {
+import { AlertCircle, ArrowLeft, HelpCircle, ArrowRight, Ban } from "lucide-react";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import PublicHeader from "@/components/PublicHeader";
+import PublicFooter from "@/components/PublicFooter";
+
+function CancelContent() {
+    const searchParams = useSearchParams();
+    const spreadsheetId = searchParams.get("spreadsheet_id");
+
+    const spreadsheetUrl = spreadsheetId
+        ? `https://docs.google.com/spreadsheets/d/${spreadsheetId}`
+        : "/";
+
     return (
-        <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
-            <div className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-8 text-center shadow-xl transition-all duration-300 hover:shadow-2xl">
-                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-white shadow-md overflow-hidden">
-                    <img src="/logo-icon.png" alt="Cancel Logo" className="h-full w-full object-cover grayscale" />
+        <div className="w-full max-w-xl mx-auto py-12 px-4">
+            <div className="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden p-8 sm:p-12 text-center relative">
+                <div className="absolute top-0 inset-x-0 h-1 bg-slate-200" />
+
+                <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-[1.5rem] bg-slate-50 text-slate-400 relative">
+                    <Ban className="h-10 w-10" />
                 </div>
 
-                <h1 className="mb-2 text-3xl font-bold tracking-tight text-gray-900">
-                    Payment Cancelled
+                <h1 className="mb-3 text-3xl font-bold tracking-tight text-slate-950">
+                    Order Cancelled
                 </h1>
 
-                <p className="mb-8 text-gray-500">
-                    The payment process was cancelled and you haven't been charged. If this was a mistake, you can try again.
+                <p className="mb-10 text-slate-500 text-base leading-relaxed">
+                    The payment process was not completed and you haven't been charged. If you ran into any issues, our support team is happy to help.
                 </p>
 
-                <div className="flex flex-col space-y-3">
-                    <Link
-                        href="/"
-                        className="flex w-full items-center justify-center rounded-lg bg-primary px-5 py-3 text-center text-sm font-medium text-white transition-all hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-secondary/20"
+                <div className="grid grid-cols-1 gap-4">
+                    <a
+                        href={spreadsheetUrl}
+                        className="flex w-full items-center justify-center rounded-xl bg-slate-900 px-6 py-4 text-center text-base font-bold text-white shadow-xl shadow-slate-100 transition-all hover:-translate-y-0.5"
                     >
-                        <ArrowLeft className="mr-2 h-4 w-4" />
-                        Return to Home
-                    </Link>
+                        Return to Sheets <ArrowRight className="ml-2 h-4 w-4" />
+                    </a>
 
-                    <Link
-                        href="/support"
-                        className="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-5 py-3 text-center text-sm font-medium text-gray-900 transition-all hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-100"
+                    <a
+                        href="mailto:support@thefinu.com"
+                        className="flex w-full items-center justify-center rounded-xl bg-white border border-slate-200 px-6 py-4 text-center text-base font-bold text-slate-700 hover:bg-slate-50 transition-all"
                     >
                         <HelpCircle className="mr-2 h-4 w-4" />
                         Contact Support
-                    </Link>
+                    </a>
                 </div>
             </div>
+        </div>
+    );
+}
+
+export default function CancelPage() {
+    return (
+        <div className="min-h-screen bg-white font-sans flex flex-col">
+            <PublicHeader />
+            <main className="flex-grow flex items-center justify-center pt-24 pb-12">
+                <Suspense fallback={<div className="text-slate-400 animate-pulse text-sm">Loading...</div>}>
+                    <CancelContent />
+                </Suspense>
+            </main>
+            <PublicFooter />
         </div>
     );
 }

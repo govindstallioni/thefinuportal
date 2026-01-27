@@ -38,8 +38,14 @@ export default function Sidebar() {
 
     return (
         <div className="flex h-screen w-64 flex-col bg-primary text-white sticky top-0 shrink-0 shadow-xl z-20">
-            <div className="flex h-20 items-center px-4 overflow-hidden">
-                <img src="/logo-full.png" alt="ThefinU Logo" className="w-full h-auto max-h-16 object-contain" />
+            <div className="h-24 flex items-center px-6 border-b border-white/5 bg-slate-900/20 backdrop-blur-sm">
+                <Link href="/dashboard" className="block transition-all hover:opacity-80 active:scale-95">
+                    <img
+                        src="/logo-full.png"
+                        alt="ThefinU Admin"
+                        className="h-10 w-auto brightness-0 invert opacity-90"
+                    />
+                </Link>
             </div>
 
             <nav className="flex-1 space-y-1 px-4 py-4">

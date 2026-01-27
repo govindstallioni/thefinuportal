@@ -23,7 +23,7 @@ export default function LoginPage() {
             const res = await api.post("/auth/login", formData);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("admin", JSON.stringify(res.data.admin));
-            router.push("/");
+            router.push("/dashboard");
         } catch (err: any) {
             setError(err.response?.data?.message || "Login failed. Please try again.");
         } finally {
@@ -32,7 +32,7 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-primary p-6">
+        <div className="flex min-h-screen items-center justify-center bg-primary p-6 font-sans">
             <div className="w-full max-w-md">
                 <div className="mb-8 flex flex-col items-center justify-center text-center">
                     <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-lg overflow-hidden">

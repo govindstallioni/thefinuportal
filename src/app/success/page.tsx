@@ -2,7 +2,7 @@
 
 import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { ArrowLeft, CheckCircle, Loader2, CreditCard, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle, Loader2, CreditCard, Sparkles } from "lucide-react";
 import Link from "next/link";
 import api from "@/lib/api";
 import PublicHeader from "@/components/PublicHeader";

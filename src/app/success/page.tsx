@@ -66,7 +66,7 @@ function SuccessContent() {
     }
 
     const spreadsheetUrl = spreadsheetId
-        ? `https://docs.google.com/spreadsheets/d/${spreadsheetId}`
+        ? `https://docs.google.com/spreadsheets/d/${spreadsheetId}/edit`
         : "/";
 
     return (

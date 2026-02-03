@@ -37,7 +37,8 @@ export default function AccountsPage() {
     const filteredAccounts = accounts.filter(acc =>
         (acc.account_name || acc.name || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
         (acc.mask || "").includes(searchTerm) ||
-        (acc.institution_id || "").toLowerCase().includes(searchTerm.toLowerCase())
+        (acc.institution_id || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (acc.user_id?.email || "").toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -64,7 +65,7 @@ export default function AccountsPage() {
                         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                         <input
                             type="text"
-                            placeholder="Search by name, mask or institution..."
+                            placeholder="Search by name, email, mask or institution..."
                             className="w-full rounded-lg border border-slate-200 pl-10 pr-4 py-2 text-sm focus:border-secondary focus:outline-none"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
@@ -88,6 +89,7 @@ export default function AccountsPage() {
                             <thead>
                                 <tr className="bg-slate-50 text-xs font-semibold uppercase tracking-wider text-slate-500">
                                     <th className="px-6 py-4">Account Name</th>
+                                    <th className="px-6 py-4">User Email</th>
                                     <th className="px-6 py-4">Institution</th>
                                     <th className="px-6 py-4">Mask</th>
                                     <th className="px-6 py-4">Link Status</th>
@@ -108,6 +110,12 @@ export default function AccountsPage() {
                                                         <p className="font-medium text-slate-900">{acc.account_name || acc.name}</p>
                                                         <p className="text-xs text-slate-400">ID: {acc.account_id}</p>
                                                     </div>
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <div className="flex items-center text-sm text-slate-600">
+                                                    <User className="mr-2 h-4 w-4 text-slate-400" />
+                                                    {acc.user_id?.email || "No Email"}
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4">
@@ -143,7 +151,7 @@ export default function AccountsPage() {
                                     ))
                                 ) : (
                                     <tr>
-                                        <td colSpan={6} className="px-6 py-10 text-center text-slate-500">
+                                        <td colSpan={7} className="px-6 py-10 text-center text-slate-500">
                                             No accounts found.
                                         </td>
                                     </tr>

@@ -7,7 +7,7 @@ const router = express.Router();
 // Get all accounts
 router.get('/', async (req, res) => {
     try {
-        const accounts = await Account.find().populate('user_id', 'email');
+        const accounts = await Account.find().populate('user_id', 'email isSubscribed');
         res.json(accounts);
     } catch (err: any) {
         res.status(500).json({ message: err.message });
@@ -77,7 +77,8 @@ router.post('/store-plaid', async (req, res) => {
                     status: true,
                     is_update: false,
                     balance: 0,
-                    color: '#3b82f6'
+                    color: '#3b82f6',
+                    isSubscribed: user.isSubscribed
                 }
             };
 

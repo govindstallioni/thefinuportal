@@ -12,27 +12,51 @@ import {
     User,
     Key
 } from "lucide-react";
-import { getAccounts } from "@/lib/api";
+import { getAccounts, unsubscribeUser } from "@/lib/api";
 
 export default function AccountsPage() {
     const [accounts, setAccounts] = useState<any[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [isLoading, setIsLoading] = useState(true);
+    const [unsubscribingEmail, setUnsubscribingEmail] = useState<string | null>(null);
+
+    const fetchAccounts = async () => {
+        setIsLoading(true);
+        try {
+            const response = await getAccounts();
+            setAccounts(response.data);
+        } catch (error) {
+            console.error("Error fetching accounts:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchAccounts = async () => {
-            try {
-                const response = await getAccounts();
-                setAccounts(response.data);
-            } catch (error) {
-                console.error("Error fetching accounts:", error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
         fetchAccounts();
     }, []);
+
+    const handleUnsubscribe = async (email: string) => {
+        if (!window.confirm(`Are you sure you want to cancel the subscription for ${email}?`)) {
+            return;
+        }
+
+        setUnsubscribingEmail(email);
+        try {
+            const response = await unsubscribeUser(email);
+            if (response.data.status === 'success') {
+                alert('Subscription canceled successfully');
+                fetchAccounts(); // Refresh the list
+            } else {
+                alert('Failed to cancel subscription: ' + response.data.message);
+            }
+        } catch (error: any) {
+            console.error("Error canceling subscription:", error);
+            alert('Error: ' + (error.response?.data?.message || error.message));
+        } finally {
+            setUnsubscribingEmail(null);
+        }
+    };
 
     const filteredAccounts = accounts.filter(acc =>
         (acc.account_name || acc.name || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -143,9 +167,20 @@ export default function AccountsPage() {
                                                 {new Date(acc.createdAt).toLocaleDateString()}
                                             </td>
                                             <td className="px-6 py-4 text-right">
-                                                <button className="text-slate-400 hover:text-slate-600">
-                                                    <MoreVertical className="h-5 w-5" />
-                                                </button>
+                                                <div className="flex items-center justify-end gap-2">
+                                                    {acc.isSubscribed && (
+                                                        <button
+                                                            onClick={() => handleUnsubscribe(acc.user_id.email)}
+                                                            disabled={unsubscribingEmail === acc.user_id.email}
+                                                            className="text-red-600 hover:text-red-800 text-xs font-semibold bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
+                                                        >
+                                                            {unsubscribingEmail === acc.user_id.email ? "Canceling..." : "Unsubscribe"}
+                                                        </button>
+                                                    )}
+                                                    <button className="text-slate-400 hover:text-slate-600">
+                                                        <MoreVertical className="h-5 w-5" />
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                     ))

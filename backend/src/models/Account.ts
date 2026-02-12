@@ -20,6 +20,7 @@ export interface IAccount extends Document {
     next_cursor?: string;
     status: boolean;
     is_update: boolean;
+    isSubscribed: boolean;
 }
 
 const AccountSchema: Schema = new Schema({
@@ -45,7 +46,8 @@ const AccountSchema: Schema = new Schema({
     linked_date: { type: Date, default: null },
     next_cursor: { type: String, default: null },
     status: { type: Boolean, default: true },
-    is_update: { type: Boolean, default: false }
+    is_update: { type: Boolean, default: false },
+    isSubscribed: { type: Boolean, default: false }
 }, { timestamps: true, collection: 'accounts' });
 
 export default mongoose.model<IAccount>('Account', AccountSchema);

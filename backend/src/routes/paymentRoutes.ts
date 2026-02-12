@@ -188,8 +188,9 @@ router.post('/unsubscribe', async (req, res) => {
         user.isSubscribed = false;
         await user.save();
 
-        // Update all accounts for this user to be unsubscribed
-        await Account.updateMany({ user_id: user._id }, { isSubscribed: false });
+        // Remove all accounts for this user upon unsubscription
+        const deleteResult = await Account.deleteMany({ user_id: user._id });
+        console.log(`Deleted ${deleteResult.deletedCount} accounts for user ${user.email} after unsubscription`);
 
         res.json({
             status: 'success',

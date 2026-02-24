@@ -128,8 +128,8 @@ export default function HomePage() {
                 {/* ── HERO ── */}
                 <section className="relative pt-28 pb-16 lg:pt-40 lg:pb-24 overflow-hidden hero-gradient">
                     <div className="absolute inset-0 dot-pattern" />
-                    <div className="absolute top-20 left-[8%] w-80 h-80 bg-primary/[0.06] rounded-full blur-3xl animate-float" />
-                    <div className="absolute bottom-10 right-[5%] w-[28rem] h-[28rem] bg-secondary/[0.05] rounded-full blur-3xl animate-float-delayed" />
+                    <div className="absolute top-20 left-[8%] w-80 h-80 bg-primary/[0.03] rounded-full blur-3xl animate-float" />
+                    <div className="absolute bottom-10 right-[5%] w-[28rem] h-[28rem] bg-secondary/[0.02] rounded-full blur-3xl animate-float-delayed" />
 
                     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                         <div className="text-center max-w-3xl mx-auto">
@@ -141,7 +141,7 @@ export default function HomePage() {
                                 <span className="text-xs font-semibold text-slate-600">Trusted by thousands of spreadsheet lovers</span>
                             </div>
 
-                            <h1 className={`text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-950 mb-5 leading-[1.1] transition-all duration-1000 delay-100 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                            <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-950 mb-5 leading-[1.1] transition-all duration-1000 delay-100 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                                 Automate Your Finances
                                 <br className="hidden md:block" />
                                 <span className="relative inline-block mt-1">
@@ -149,7 +149,7 @@ export default function HomePage() {
                                 </span>
                             </h1>
 
-                            <p className={`text-sm md:text-base text-slate-500 mb-8 max-w-xl mx-auto leading-relaxed transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                            <p className={`text-sm md:text-base font-medium text-slate-500 mb-8 max-w-xl mx-auto leading-relaxed transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                                 ThefinU syncs your bank transactions, balances, and investments directly into Google Sheets — track your finances with zero effort.
                             </p>
 
@@ -165,6 +165,11 @@ export default function HomePage() {
                                 <span className="flex items-center gap-1"><BadgeCheck className="h-3.5 w-3.5 text-emerald-500" /> Free trial</span>
                                 <span className="flex items-center gap-1"><CreditCard className="h-3.5 w-3.5 text-slate-400" /> No card needed</span>
                                 <span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5 text-slate-400" /> 2-min setup</span>
+                            </div>
+
+                            <div className={`mt-4 flex items-center justify-center gap-1.5 text-[11px] text-slate-400 transition-all duration-1000 delay-[900ms] ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                                <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />
+                                <span>Powered by <span className="font-semibold text-slate-500">Plaid</span> — bank-level security</span>
                             </div>
                         </div>
 
@@ -262,6 +267,8 @@ export default function HomePage() {
                     </div>
                 </section>
 
+                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
                 {/* ── BANK LOGOS ── */}
                 <section className="py-12 bg-slate-50/50 border-y border-slate-100 overflow-hidden">
                     <p className="text-center text-sm text-slate-500 mb-8 px-4">
@@ -287,8 +294,10 @@ export default function HomePage() {
                     </div>
                 </section>
 
+                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
                 {/* ── STATS ── */}
-                <section className="py-14 bg-white" ref={statsRef}>
+                <section className="py-16 bg-gradient-to-b from-white to-slate-50/30" ref={statsRef}>
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                             {[
@@ -301,15 +310,18 @@ export default function HomePage() {
                                     <div className={`inline-flex items-center justify-center w-9 h-9 rounded-lg ${stat.iconBg} ${stat.iconColor} mb-3`}>
                                         <stat.icon className="h-4 w-4" />
                                     </div>
-                                    <div className="text-2xl md:text-3xl font-bold text-slate-900 mb-0.5">
+                                    <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-1">
                                         <AnimatedCounter end={stat.value} suffix={stat.suffix} />
                                     </div>
+                                    <div className="w-8 h-0.5 bg-gradient-to-r from-primary/40 to-secondary/20 rounded-full mx-auto mb-2" />
                                     <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{stat.label}</div>
                                 </div>
                             ))}
                         </div>
                     </div>
                 </section>
+
+                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
                 {/* ── FEATURES ── */}
                 <section id="features" className="py-20 bg-slate-50/40" ref={featuresRef}>
@@ -328,7 +340,7 @@ export default function HomePage() {
                                 { title: "Smart categorization", desc: "Transactions auto-categorize so you instantly see where your money goes.", icon: BarChart3, iconColor: "text-amber-500", iconBg: "bg-amber-50" },
                                 { title: "Works on any device", desc: "Desktop, tablet, or phone — Google Sheets works seamlessly everywhere.", icon: Smartphone, iconColor: "text-cyan-500", iconBg: "bg-cyan-50" }
                             ].map((item, i) => (
-                                <div key={i} className={`reveal reveal-delay-${(i % 3) + 1} group bg-white rounded-xl p-6 border border-slate-200 transition-all duration-300`}>
+                                <div key={i} className={`reveal reveal-delay-${(i % 3) + 1} group card-shine bg-white rounded-xl p-6 border border-slate-200 transition-all duration-300`}>
                                     <div className={`w-10 h-10 rounded-xl ${item.iconBg} flex items-center justify-center ${item.iconColor} mb-4 group-hover:scale-110 transition-transform`}>
                                         <item.icon className="h-5 w-5" />
                                     </div>
@@ -339,6 +351,8 @@ export default function HomePage() {
                         </div>
                     </div>
                 </section>
+
+                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
                 {/* ── HOW IT WORKS ── */}
                 <section id="how-it-works" className="py-20 bg-white" ref={howRef}>
@@ -357,13 +371,15 @@ export default function HomePage() {
                                 { step: "03", title: "Make it your own", icon: TrendingUp, iconBg: "bg-violet-50", iconColor: "text-violet-500",
                                   points: ["Start with premade budget templates", "Add formulas, charts, and pivot tables", "Build dashboards on top of live data"] }
                             ].map((step, i) => (
-                                <div key={i} className={`reveal reveal-delay-${i + 1} group`}>
+                                <div key={i} className={`reveal reveal-delay-${i + 1} group ${i < 2 ? 'timeline-connector' : ''}`}>
                                     <div className="bg-white p-6 rounded-xl border border-slate-200 transition-all duration-300 h-full flex flex-col">
                                         <div className="flex items-center gap-3 mb-4">
+                                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-xs font-bold shrink-0">
+                                                {i + 1}
+                                            </div>
                                             <div className={`w-11 h-11 rounded-xl ${step.iconBg} flex items-center justify-center ${step.iconColor} group-hover:scale-105 transition-transform`}>
                                                 <step.icon className="h-5 w-5" />
                                             </div>
-                                            <div className="text-sm font-bold text-slate-400">Step {step.step}</div>
                                         </div>
                                         <h4 className="text-sm font-bold text-slate-950 mb-3">{step.title}</h4>
                                         <ul className="space-y-2 mb-auto">
@@ -381,6 +397,8 @@ export default function HomePage() {
                     </div>
                 </section>
 
+                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
                 {/* ── TESTIMONIALS ── */}
                 <section id="what-people-say" className="py-20 bg-slate-50/40" ref={testimonialsRef}>
                     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -391,7 +409,8 @@ export default function HomePage() {
 
                         {/* Featured */}
                         <div className="reveal mb-8">
-                            <div className="bg-white rounded-xl border border-slate-200 p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center">
+                            <div className="relative bg-white rounded-xl border border-slate-200 p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center shadow-sm">
+                                <div className="absolute top-4 right-6 text-6xl font-serif text-primary/[0.07] leading-none select-none">&ldquo;</div>
                                 <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-lg font-bold shrink-0">JR</div>
                                 <div>
                                     <div className="flex gap-0.5 mb-3">{[...Array(5)].map((_, j) => <Star key={j} className="h-4 w-4 text-amber-400 fill-amber-400" />)}</div>
@@ -421,6 +440,8 @@ export default function HomePage() {
                         </div>
                     </div>
                 </section>
+
+                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
                 {/* ── SECURITY ── */}
                 <section className="py-20 bg-white" ref={securityRef}>
@@ -467,6 +488,8 @@ export default function HomePage() {
                     </div>
                 </section>
 
+                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
                 {/* ── PRICING ── */}
                 <section id="pricing" className="py-20 bg-slate-50/40" ref={pricingRef}>
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -476,7 +499,7 @@ export default function HomePage() {
                         </div>
 
                         <div className="reveal grid md:grid-cols-2 gap-6 items-start max-w-3xl mx-auto">
-                            <div className="bg-white rounded-2xl border border-slate-200 p-7 relative overflow-hidden">
+                            <div className="gradient-border-card glow-primary bg-white rounded-2xl p-7 relative overflow-hidden">
                                 <div className="absolute top-0 right-0 bg-gradient-to-l from-primary to-secondary text-white text-[9px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">Best value</div>
                                 <div className="text-sm font-bold text-primary mb-1.5">ThefinU Pro</div>
                                 <div className="flex items-end gap-1 mb-0.5">
@@ -522,6 +545,8 @@ export default function HomePage() {
                     </div>
                 </section>
 
+                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
                 {/* ── FAQ ── */}
                 <section className="py-20 bg-white" ref={faqRef}>
                     <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -542,23 +567,29 @@ export default function HomePage() {
                     </div>
                 </section>
 
+                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
                 {/* ── FINAL CTA ── */}
                 <section className="py-20 relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
+                    <div className="absolute inset-0 grid-pattern opacity-40" />
                     <div className="absolute top-10 left-[10%] w-40 h-40 bg-primary/20 rounded-full blur-3xl animate-float" />
                     <div className="absolute bottom-10 right-[10%] w-48 h-48 bg-secondary/15 rounded-full blur-3xl animate-float-delayed" />
 
                     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                             Ready to take control of your finances?
                         </h2>
                         <p className="text-sm text-slate-400 mb-8 max-w-lg mx-auto">
                             Join thousands managing money smarter with ThefinU and Google Sheets.
                         </p>
-                        <a href={INSTALL_LINK} target="_blank" rel="noopener noreferrer"
-                            className="group inline-flex bg-white text-slate-900 px-8 py-3.5 rounded-xl text-base font-bold shadow-xl hover:shadow-2xl hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 items-center gap-2">
-                            Install on Google Sheets <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                        </a>
+                        <div className="relative inline-flex">
+                            <div className="absolute -inset-1 bg-white/20 rounded-2xl blur-md animate-pulse-glow" />
+                            <a href={INSTALL_LINK} target="_blank" rel="noopener noreferrer"
+                                className="relative group inline-flex bg-white text-slate-900 px-8 py-3.5 rounded-xl text-base font-bold shadow-xl hover:shadow-2xl hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 items-center gap-2">
+                                Install on Google Sheets <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                            </a>
+                        </div>
                         <div className="mt-5 flex items-center justify-center gap-5 text-xs text-slate-500">
                             <span className="flex items-center gap-1"><BadgeCheck className="h-3.5 w-3.5 text-emerald-400" /> Free trial</span>
                             <span className="flex items-center gap-1"><ShieldCheck className="h-3.5 w-3.5 text-emerald-400" /> Secure</span>

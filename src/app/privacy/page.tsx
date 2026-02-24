@@ -25,9 +25,9 @@ export default function PrivacyPage() {
                     <h1 className="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-2">Privacy Policy</h1>
                     <p className="text-slate-500 mb-6 border-b border-slate-100 pb-6 text-sm">Updated September 2023</p>
 
-                    <div className="prose prose-slate max-w-none space-y-6 text-slate-700 leading-relaxed">
-                        <p className="text-lg text-slate-600 leading-relaxed">
-                            ThefinU, LLC. (“ThefinU”, “Us”, “We” or “Our”) is committed to protecting your privacy. This Privacy Policy describes how we collect, use, and share your information when you use our website or services.
+                    <div className="prose prose-slate max-w-none space-y-6 text-slate-700 leading-relaxed text-sm">
+                        <p className="text-sm text-slate-600 leading-relaxed">
+                            ThefinU, LLC. ("ThefinU", "Us", "We" or "Our") is committed to protecting your privacy. This Privacy Policy describes how we collect, use, and share your information when you use our website or services.
                         </p>
 
                         <p>
@@ -41,7 +41,7 @@ export default function PrivacyPage() {
                             </p>
                             <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 my-8">
                                 <h4 className="font-bold text-slate-900 mb-2">Financial Account Access</h4>
-                                <p className="text-sm text-slate-600 m-0">
+                                <p className="text-slate-600 m-0">
                                     If you choose to use our service, we will request credentials via Plaid to access your bank account information. <strong>ThefinU does not store your usernames or passwords for financial institutions on its servers.</strong>
                                 </p>
                             </div>
@@ -62,7 +62,7 @@ export default function PrivacyPage() {
                                     "Enforce our terms & conditions",
                                     "Manage our business operations"
                                 ].map((item, i) => (
-                                    <li key={i} className="flex items-start bg-slate-50 p-3 rounded-lg text-sm font-medium text-slate-700">
+                                    <li key={i} className="flex items-start bg-slate-50 p-3 rounded-lg font-medium text-slate-700">
                                         <div className="h-5 w-5 mr-3 flex-shrink-0 flex items-center justify-center rounded-full bg-emerald-100 text-secondary text-[10px]">✓</div>
                                         {item}
                                     </li>
@@ -75,7 +75,7 @@ export default function PrivacyPage() {
                             <p>
                                 We take electronic and physical security measures to safeguard your personal information. Access is restricted to authorized employees only. We use Transport Layer Security (TLS) technology for all sensitive transmissions and maintain robust firewalls.
                             </p>
-                            <p className="p-4 bg-amber-50 text-amber-800 rounded-lg text-sm border border-amber-100 italic">
+                            <p className="p-4 bg-amber-50 text-amber-800 rounded-lg border border-amber-100 italic">
                                 Note: No system can be completely secure. While we take every precaution, we cannot promise absolute security of your transmissions.
                             </p>
                         </section>

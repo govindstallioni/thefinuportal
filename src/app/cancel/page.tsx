@@ -28,7 +28,7 @@ function CancelContent() {
                     Order Cancelled
                 </h1>
 
-                <p className="mb-10 text-slate-500 text-base leading-relaxed">
+                <p className="mb-10 text-slate-500 text-sm leading-relaxed">
                     The payment process was not completed and you haven't been charged. If you ran into any issues, our support team is happy to help.
                 </p>
 

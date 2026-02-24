@@ -18,9 +18,9 @@ export default function TermsPage() {
                     <h1 className="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-2">Terms of Service</h1>
                     <p className="text-slate-500 mb-6 border-b border-slate-100 pb-6 text-sm">Effective Date: October 25, 2025</p>
 
-                    <div className="prose prose-slate max-w-none space-y-6 text-slate-700 leading-relaxed">
+                    <div className="prose prose-slate max-w-none space-y-6 text-slate-700 leading-relaxed text-sm">
                         <p>
-                            These Terms of Service (the “Terms”) are a legally binding agreement between you and ThefinU, LLC (“ThefinU,” “we,” “us,” and “our”) and govern your access to and use of our website located at <a href="https://www.thefinu.com" className="text-secondary font-medium hover:underline">www.thefinu.com</a> and the related personal finance synchronization services, including any spreadsheet Add-ons or Add-ins, offered via the Google Workspace Marketplace (collectively, the “Services”).
+                            These Terms of Service (the "Terms") are a legally binding agreement between you and ThefinU, LLC ("ThefinU," "we," "us," and "our") and govern your access to and use of our website located at <a href="https://www.thefinu.com" className="text-secondary font-medium hover:underline">www.thefinu.com</a> and the related personal finance synchronization services, including any spreadsheet Add-ons or Add-ins, offered via the Google Workspace Marketplace (collectively, the "Services").
                         </p>
 
                         <div className="p-4 bg-slate-50 border-l-4 border-primary rounded-r-lg">
@@ -45,12 +45,12 @@ export default function TermsPage() {
                             <h2 className="text-2xl font-bold text-slate-900 mt-12 mb-4">2. Linking Data Source Accounts and Data Aggregation (Plaid)</h2>
                             <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">A. Authorization for Data Retrieval</h3>
                             <p>
-                                The Services facilitate the updating of your financial spreadsheets with up-to-date financial data (“Financial Data”) retrieved from your banks, credit cards, and other third-party financial sources (“Data Sources”).
+                                The Services facilitate the updating of your financial spreadsheets with up-to-date financial data ("Financial Data") retrieved from your banks, credit cards, and other third-party financial sources ("Data Sources").
                             </p>
                             <p>
-                                You acknowledge and agree that ThefinU uses the services of data aggregators, including Plaid, Inc. (“Plaid”), to access your Financial Data on your behalf. By using the Services, you authorize and direct ThefinU, through Plaid, to access the Data Source accounts you designate, using the log-in credentials you provide. For the sole purpose of providing the Services, you hereby grant ThefinU (and Plaid) a limited power of attorney to retrieve and use your information.
+                                You acknowledge and agree that ThefinU uses the services of data aggregators, including Plaid, Inc. ("Plaid"), to access your Financial Data on your behalf. By using the Services, you authorize and direct ThefinU, through Plaid, to access the Data Source accounts you designate, using the log-in credentials you provide. For the sole purpose of providing the Services, you hereby grant ThefinU (and Plaid) a limited power of attorney to retrieve and use your information.
                             </p>
-                            <p className="p-4 bg-slate-50 rounded-lg text-sm italic text-slate-600 border border-slate-100">
+                            <p className="p-4 bg-slate-50 rounded-lg italic text-slate-600 border border-slate-100">
                                 YOU ACKNOWLEDGE AND AGREE THAT WHEN THEFINU, EITHER DIRECTLY OR THROUGH PLAID, ACCESSES AND RETRIEVES INFORMATION FROM THIRD PARTY SITES, THEFINU IS ACTING AS YOUR AGENT, AND NOT THE AGENT OR ON BEHALF OF THE THIRD PARTY.
                             </p>
                             <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">B. Plaid Disclosure</h3>
@@ -90,11 +90,11 @@ export default function TermsPage() {
                         <section>
                             <h2 className="text-2xl font-bold text-slate-900 mt-12 mb-4">5. Limitation of Liability and Warranties</h2>
                             <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">A. Disclaimer of Warranties</h3>
-                            <p className="uppercase text-xs tracking-wide text-slate-500 line-clamp-none">
-                                THE SERVICES AND ALL INFORMATION, PRODUCTS, AND OTHER CONTENT INCLUDED IN OR ACCESSIBLE FROM THE SITE AND SERVICES ARE PROVIDED ON AN “AS IS” AND “AS AVAILABLE” BASIS. THEFINU AND ITS SERVICE PROVIDERS (INCLUDING PLAID) EXPRESSLY DISCLAIM ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+                            <p className="uppercase text-sm tracking-wide text-slate-500 line-clamp-none">
+                                THE SERVICES AND ALL INFORMATION, PRODUCTS, AND OTHER CONTENT INCLUDED IN OR ACCESSIBLE FROM THE SITE AND SERVICES ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS. THEFINU AND ITS SERVICE PROVIDERS (INCLUDING PLAID) EXPRESSLY DISCLAIM ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
                             </p>
                             <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">B. Limitation of Liability</h3>
-                            <p className="uppercase text-xs tracking-wide text-slate-500">
+                            <p className="uppercase text-sm tracking-wide text-slate-500">
                                 YOU EXPRESSLY ACKNOWLEDGE AND AGREE that ThefinU, its service providers (including Plaid), and their respective affiliates shall not be liable for any direct, indirect, incidental, special, consequential, punitive, or exemplary damages, resulting from: (i) the use or inability to use the Services; (ii) the cost of procurement of substitute goods and services; or (iii) unauthorized access to or alteration of your data.
                             </p>
                         </section>

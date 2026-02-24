@@ -1,48 +1,85 @@
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
+import { Mail, MapPin, ShieldCheck, Zap, Heart } from "lucide-react";
+
+const INSTALL_LINK = "https://workspace.google.com/marketplace/app/thefinu/123456789";
 
 export default function PublicFooter() {
     return (
-        <footer className="bg-white pt-24 pb-12">
+        <footer className="bg-slate-950 relative overflow-hidden">
+            {/* Subtle top gradient line */}
+            <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-                    <div className="md:col-span-1">
+                {/* Main footer grid */}
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12 py-14">
+                    {/* Brand column */}
+                    <div className="col-span-2 md:col-span-2">
                         <Link href="/">
-                            <img src="/logo-full.png" alt="ThefinU Logo" className="h-8 mb-6" />
+                            <img src="/logo-full.png" alt="ThefinU Logo" className="h-8 mb-5 brightness-0 invert opacity-80" />
                         </Link>
-                        <p className="text-slate-500 text-sm leading-relaxed mb-6">
-                            Bridging the gap between your bank and your favorite spreadsheet. Secure, automatic, and simple.
+                        <p className="text-slate-400 text-sm leading-relaxed mb-5 max-w-xs">
+                            Automated personal finance tracking directly in Google Sheets. Secure, simple, and fully customizable.
                         </p>
+                        <div className="flex items-center gap-4 text-sm text-slate-500">
+                            <div className="flex items-center gap-1.5">
+                                <MapPin className="h-3.5 w-3.5" />
+                                Denver, CO
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                                <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />
+                                SOC 2
+                            </div>
+                        </div>
                     </div>
+
+                    {/* Product */}
                     <div>
-                        <h4 className="font-bold text-slate-900 mb-6 uppercase text-xs tracking-widest">Product</h4>
-                        <ul className="space-y-4 text-sm text-slate-500 font-medium">
-                            <li><Link href="/#features" className="hover:text-primary transition-colors">Features</Link></li>
-                            <li><Link href="/#how-it-works" className="hover:text-primary transition-colors">How it Works</Link></li>
-                            <li><Link href="/#pricing" className="hover:text-primary transition-colors">Pricing</Link></li>
+                        <h4 className="font-bold text-white mb-5 uppercase text-[11px] tracking-[0.15em]">Product</h4>
+                        <ul className="space-y-3 text-sm text-slate-400 font-medium">
+                            <li><Link href="/#features" className="hover:text-white transition-colors">Features</Link></li>
+                            <li><Link href="/#how-it-works" className="hover:text-white transition-colors">How it Works</Link></li>
+                            <li><Link href="/#pricing" className="hover:text-white transition-colors">Pricing</Link></li>
+                            <li><Link href="/#what-people-say" className="hover:text-white transition-colors">Reviews</Link></li>
                         </ul>
                     </div>
+
+                    {/* Legal */}
                     <div>
-                        <h4 className="font-bold text-slate-900 mb-6 uppercase text-xs tracking-widest">Legal</h4>
-                        <ul className="space-y-4 text-sm text-slate-500 font-medium">
-                            <li><Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link></li>
-                            <li><Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
+                        <h4 className="font-bold text-white mb-5 uppercase text-[11px] tracking-[0.15em]">Legal</h4>
+                        <ul className="space-y-3 text-sm text-slate-400 font-medium">
+                            <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
+                            <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
                         </ul>
                     </div>
+
+                    {/* Support */}
                     <div>
-                        <h4 className="font-bold text-slate-900 mb-6 uppercase text-xs tracking-widest">Contact</h4>
-                        <ul className="space-y-4 text-sm text-slate-500 font-medium">
-                            <li><a href="mailto:support@thefinu.com" className="hover:text-primary transition-colors">support@thefinu.com</a></li>
-                            <li className="flex items-center">
-                                Denver, Colorado <ExternalLink className="ml-2 h-3 w-3 opacity-50" />
+                        <h4 className="font-bold text-white mb-5 uppercase text-[11px] tracking-[0.15em]">Support</h4>
+                        <ul className="space-y-3 text-sm text-slate-400 font-medium">
+                            <li>
+                                <a href="mailto:support@thefinu.com" className="hover:text-white transition-colors flex items-center gap-2">
+                                    <Mail className="h-3.5 w-3.5" />
+                                    support@thefinu.com
+                                </a>
+                            </li>
+                            <li>
+                                <a href={INSTALL_LINK} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-2">
+                                    <Zap className="h-3.5 w-3.5" />
+                                    Google Workspace
+                                </a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div className="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center text-sm text-slate-400 gap-4">
-                    <p>&copy; {new Date().getFullYear()} ThefinU, LLC. All rights reserved.</p>
-                    <div className="flex space-x-6">
-                        <span className="font-mono text-[10px] uppercase tracking-tighter text-slate-300">v1.0.0</span>
+
+                {/* Bottom bar */}
+                <div className="py-6 border-t border-slate-800/60 flex flex-col md:flex-row justify-between items-center text-[13px] text-slate-500 gap-4">
+                    <p className="flex items-center gap-1">
+                        &copy; {new Date().getFullYear()} ThefinU, LLC. Built with <Heart className="h-3 w-3 text-primary inline" /> in Colorado.
+                    </p>
+                    <div className="flex items-center gap-6">
+                        <Link href="/terms" className="hover:text-slate-300 transition-colors">Terms</Link>
+                        <Link href="/privacy" className="hover:text-slate-300 transition-colors">Privacy</Link>
                     </div>
                 </div>
             </div>

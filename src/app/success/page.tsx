@@ -85,7 +85,7 @@ function SuccessContent() {
                     You're All Set!
                 </h1>
 
-                <p className="mb-8 text-slate-500 text-base leading-relaxed">
+                <p className="mb-8 text-slate-500 text-sm leading-relaxed">
                     Great news! Your Pro features are now unlocked and ready to use in your Google Sheet.
                 </p>
 

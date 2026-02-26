@@ -4,6 +4,7 @@ import Settings from '../models/Settings.js';
 import User from '../models/User.js';
 import Subscription from '../models/Subscription.js';
 import Account from '../models/Account.js';
+import { gasAuth, type GasAuthRequest } from '../middleware/gasAuthMiddleware.js';
 
 const router = express.Router();
 
@@ -17,6 +18,57 @@ const getStripe = async () => {
         apiVersion: '2024-12-18.acacia' as any, // Use latest or compatible API version
     });
 };
+
+/**
+ * @route   POST /api/payment/create-checkout-session
+ * @desc    Create a Stripe checkout session server-side (called from GAS client)
+ */
+router.post('/create-checkout-session', gasAuth, async (req: GasAuthRequest, res) => {
+    try {
+        const { email, spreadsheetId } = req.body;
+        const userEmail = email || req.gasUser?.email;
+
+        if (!userEmail) {
+            return res.status(400).json({ message: 'Email is required' });
+        }
+
+        const settings = await Settings.findOne();
+        if (!settings || !settings.stripeSecretKey) {
+            return res.status(500).json({ message: 'Stripe is not configured' });
+        }
+
+        const stripe = new Stripe(settings.stripeSecretKey, {
+            apiVersion: '2024-12-18.acacia' as any,
+        });
+
+        // Find the default price from Stripe (first active price)
+        const prices = await stripe.prices.list({ active: true, limit: 1 });
+        if (!prices.data.length) {
+            return res.status(500).json({ message: 'No active price found in Stripe' });
+        }
+        const priceId = prices.data[0]!.id;
+
+        const baseUrl = settings.appEmail ? `https://${settings.appEmail}` : process.env.APP_BASE_URL || 'https://thefinu.stallioni.com';
+
+        const session = await stripe.checkout.sessions.create({
+            mode: 'subscription',
+            customer_email: userEmail,
+            success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}&spreadsheet_id=${encodeURIComponent(spreadsheetId || '')}`,
+            cancel_url: `${baseUrl}/cancel?spreadsheet_id=${encodeURIComponent(spreadsheetId || '')}`,
+            line_items: [
+                {
+                    price: priceId,
+                    quantity: 1,
+                },
+            ],
+        });
+
+        res.json({ url: session.url });
+    } catch (err: any) {
+        console.error('Create checkout session error:', err);
+        res.status(500).json({ message: err.message || 'Failed to create checkout session' });
+    }
+});
 
 /**
  * @route   POST /api/payment/verify-session
@@ -133,7 +185,7 @@ router.post('/verify-session', async (req, res) => {
  * @route   POST /api/payment/unsubscribe
  * @desc    Unsubscribe a user using their email address
  */
-router.post('/unsubscribe', async (req, res) => {
+router.post('/unsubscribe', gasAuth, async (req, res) => {
     try {
         const { email } = req.body;
 

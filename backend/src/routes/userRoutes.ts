@@ -1,6 +1,7 @@
 import express from 'express';
 import User from '../models/User.js';
 import UserSpreadsheet from '../models/UserSpreadsheet.js';
+import { gasAuth } from '../middleware/gasAuthMiddleware.js';
 
 const router = express.Router();
 
@@ -8,7 +9,7 @@ const router = express.Router();
  * @route   POST /api/users/validate-user
  * @desc    Validate user exists, create if not, and sync spreadsheet ID
  */
-router.post('/validate-user', async (req, res) => {
+router.post('/validate-user', gasAuth, async (req, res) => {
     try {
         const { email, spreadsheetId } = req.body;
 

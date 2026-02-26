@@ -1,6 +1,7 @@
 import express from 'express';
 import Account from '../models/Account.js';
 import User from '../models/User.js';
+import { gasAuth } from '../middleware/gasAuthMiddleware.js';
 
 const router = express.Router();
 
@@ -27,8 +28,8 @@ router.post('/', async (req, res) => {
 
 
 
-// Store Plaid accounts (Public API)
-router.post('/store-plaid', async (req, res) => {
+// Store Plaid accounts (authenticated GAS clients)
+router.post('/store-plaid', gasAuth, async (req, res) => {
     try {
         const { email, plaid_item_id, access_token, accounts, metadata } = req.body;
 
@@ -126,8 +127,8 @@ router.post('/plaid-webhook', async (req, res) => {
     }
 });
 
-// Get accounts by user email (Public API)
-router.get('/get-by-email/:email', async (req, res) => {
+// Get accounts by user email (authenticated GAS clients)
+router.get('/get-by-email/:email', gasAuth, async (req, res) => {
     try {
         const { email } = req.params;
 
@@ -150,10 +151,10 @@ router.get('/get-by-email/:email', async (req, res) => {
     }
 });
 
-// Update account details by account_id
-router.patch('/update-account/:account_id', async (req, res) => {
+// Update account details by account_id (authenticated GAS clients)
+router.patch('/update-account/:account_id', gasAuth, async (req, res) => {
     try {
-        const { account_id } = req.params;
+        const account_id = req.params.account_id as string;
         const updateData = req.body;
 
         // Prevent updating sensitive official fields if necessary
@@ -162,7 +163,7 @@ router.patch('/update-account/:account_id', async (req, res) => {
         delete updateData.user_id;
 
         const account = await Account.findOneAndUpdate(
-            { account_id },
+            { account_id } as any,
             { $set: updateData },
             { new: true, runValidators: true }
         );
@@ -177,11 +178,11 @@ router.patch('/update-account/:account_id', async (req, res) => {
     }
 });
 
-// Get account by account_id
-router.get('/:account_id', async (req, res) => {
+// Get account by account_id (authenticated GAS clients)
+router.get('/:account_id', gasAuth, async (req, res) => {
     try {
-        const { account_id } = req.params;
-        const account = await Account.findOne({ account_id });
+        const account_id = req.params.account_id as string;
+        const account = await Account.findOne({ account_id } as any);
         if (!account) {
             return res.status(404).json({ message: 'Account not found' });
         }

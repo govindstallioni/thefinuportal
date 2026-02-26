@@ -358,7 +358,7 @@ export default function HomePage() {
                 <section id="how-it-works" className="py-20 bg-white" ref={howRef}>
                     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center mb-12 reveal">
-                            <h2 className="text-2xl md:text-3xl font-bold text-slate-950 mb-3">Get started in three simple steps</h2>
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-950 mb-3">How it works</h2>
                             <p className="text-slate-500 max-w-lg mx-auto text-sm">Three simple steps to automated finance tracking.</p>
                         </div>
 
@@ -403,7 +403,7 @@ export default function HomePage() {
                 <section id="what-people-say" className="py-20 bg-slate-50/40" ref={testimonialsRef}>
                     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center mb-12 reveal">
-                            <h2 className="text-2xl md:text-3xl font-bold text-slate-950 mb-3">Loved by spreadsheet enthusiasts</h2>
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-950 mb-3">What people say</h2>
                             <p className="text-slate-500 max-w-lg mx-auto text-sm">See why thousands trust ThefinU for finance tracking.</p>
                         </div>
 

@@ -164,13 +164,13 @@ export default function AccountsPage() {
                                                 )}
                                             </td>
                                             <td className="px-6 py-4 text-sm text-slate-500">
-                                                {new Date(acc.createdAt).toLocaleDateString()}
+                                                {acc.createdAt ? new Date(acc.createdAt).toLocaleDateString() : "N/A"}
                                             </td>
                                             <td className="px-6 py-4 text-right">
                                                 <div className="flex items-center justify-end gap-2">
-                                                    {acc.isSubscribed && (
+                                                    {acc.isSubscribed && acc.user_id?.email && (
                                                         <button
-                                                            onClick={() => handleUnsubscribe(acc.user_id.email)}
+                                                            onClick={() => acc.user_id?.email && handleUnsubscribe(acc.user_id.email)}
                                                             disabled={unsubscribingEmail === acc.user_id.email}
                                                             className="text-red-600 hover:text-red-800 text-xs font-semibold bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
                                                         >

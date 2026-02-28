@@ -37,13 +37,13 @@ export default function Sidebar() {
     };
 
     return (
-        <div className="flex h-screen w-64 flex-col bg-primary text-white sticky top-0 shrink-0 shadow-xl z-20">
-            <div className="h-24 flex items-center px-6 border-b border-white/5 bg-slate-900/20 backdrop-blur-sm">
+        <div className="flex h-screen w-64 flex-col sticky top-0 shrink-0 shadow-xl z-20">
+            <div className="h-24 flex items-center justify-center px-6 border-b border-white/5">
                 <Link href="/dashboard" className="block transition-all hover:opacity-80 active:scale-95">
                     <img
-                        src="/logo-full.png"
+                        src="/logo.png"
                         alt="ThefinU Admin"
-                        className="h-10 w-auto brightness-0 invert opacity-90"
+                        className="h-20 w-auto"
                     />
                 </Link>
             </div>
@@ -59,7 +59,7 @@ export default function Sidebar() {
                                 "flex items-center rounded-lg px-4 py-3 text-sm font-medium transition-colors",
                                 isActive
                                     ? "bg-secondary text-white"
-                                    : "text-slate-300 hover:bg-white/10 hover:text-white"
+                                    : "hover:bg-secondary hover:text-white"
                             )}
                         >
                             <item.icon className="mr-3 h-5 w-5" />
@@ -72,7 +72,7 @@ export default function Sidebar() {
             <div className="border-t border-slate-800 p-4 space-y-2">
                 <button
                     onClick={handleLogout}
-                    className="flex w-full items-center rounded-lg px-4 py-2 text-sm font-medium text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 transition-colors"
+                    className="flex w-full items-center rounded-lg px-4 py-2 text-sm font-medium text-rose-400 transition-colors cursor-pointer"
                 >
                     <LogOut className="mr-3 h-5 w-5" />
                     Logout

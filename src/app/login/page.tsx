@@ -32,13 +32,13 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-primary p-6 font-sans">
+        <div className="flex min-h-screen items-center justify-center p-6 font-sans">
             <div className="w-full max-w-md">
                 <div className="mb-8 flex flex-col items-center justify-center text-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-lg overflow-hidden">
-                        <img src="/logo-icon.png" alt="Icon" className="h-full w-full object-cover" />
+                    <div className="flex h-16 w-16 items-center justify-center overflow-hidden">
+                        <img src="/logo.png" alt="Icon" className="h-full w-full object-cover" />
                     </div>
-                    <h1 className="mt-6 text-3xl font-bold tracking-tight text-white">Welcome back</h1>
+                    <h1 className="mt-6 text-3xl font-bold">Welcome back</h1>
                     <p className="mt-2 text-slate-400">Please enter your details to sign in.</p>
                 </div>
 
@@ -83,7 +83,7 @@ export default function LoginPage() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="flex w-full items-center justify-center rounded-lg bg-secondary px-4 py-3 text-sm font-bold text-white hover:opacity-90 transition-all disabled:opacity-50 shadow-lg shadow-secondary/20"
+                            className="flex w-full items-center justify-center rounded-lg bg-primary px-4 py-3 text-sm font-bold text-white hover:opacity-90 transition-all disabled:opacity-50 cursor-pointer"
                         >
                             {loading ? (
                                 <Loader2 className="h-5 w-5 animate-spin" />
@@ -95,7 +95,7 @@ export default function LoginPage() {
                 </div>
 
                 <p className="mt-8 text-center text-xs text-slate-500 uppercase tracking-widest">
-                    Security Protected • ThefinU Admin
+                    ThefinU Admin
                 </p>
             </div>
         </div>

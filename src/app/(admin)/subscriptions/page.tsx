@@ -83,12 +83,12 @@ export default function SubscriptionsPage() {
                     <table className="w-full text-left">
                         <thead>
                             <tr className="bg-slate-50 text-xs font-semibold uppercase tracking-wider text-slate-500">
-                                <th className="px-6 py-4">User / Email</th>
-                                <th className="px-6 py-4">Plan</th>
-                                <th className="px-6 py-4">Status</th>
-                                <th className="px-6 py-4">Amount</th>
-                                <th className="px-6 py-4">Next Billing</th>
-                                <th className="px-6 py-4 text-right">Subscription ID</th>
+                                <th className="px-6 py-4 bg-secondary text-white">User / Email</th>
+                                <th className="px-6 py-4 bg-secondary text-white">Plan</th>
+                                <th className="px-6 py-4 bg-secondary text-white">Status</th>
+                                <th className="px-6 py-4 bg-secondary text-white">Amount</th>
+                                <th className="px-6 py-4 bg-secondary text-white">Next Billing</th>
+                                <th className="px-6 py-4 bg-secondary text-white text-right">Subscription ID</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100">

@@ -15,7 +15,7 @@ export default function PublicFooter() {
                     {/* Brand column */}
                     <div className="col-span-2 md:col-span-2">
                         <Link href="/">
-                            <img src="/logo-full.png" alt="ThefinU Logo" className="h-8 mb-5 brightness-0 invert opacity-80" />
+                            <img src="/logo.png" alt="ThefinU Logo" className="h-20 mb-5" />
                         </Link>
                         <p className="text-slate-400 text-sm leading-relaxed mb-5 max-w-xs">
                             Automated personal finance tracking directly in Google Sheets. Secure, simple, and fully customizable.

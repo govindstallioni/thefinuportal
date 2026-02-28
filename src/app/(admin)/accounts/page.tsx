@@ -112,13 +112,13 @@ export default function AccountsPage() {
                         <table className="w-full text-left">
                             <thead>
                                 <tr className="bg-slate-50 text-xs font-semibold uppercase tracking-wider text-slate-500">
-                                    <th className="px-6 py-4">Account Name</th>
-                                    <th className="px-6 py-4">User Email</th>
-                                    <th className="px-6 py-4">Institution</th>
-                                    <th className="px-6 py-4">Mask</th>
-                                    <th className="px-6 py-4">Link Status</th>
-                                    <th className="px-6 py-4">Created At</th>
-                                    <th className="px-6 py-4 text-right">Action</th>
+                                    <th className="px-6 py-4 bg-secondary text-white">Account Name</th>
+                                    <th className="px-6 py-4 bg-secondary text-white">User Email</th>
+                                    <th className="px-6 py-4 bg-secondary text-white">Institution</th>
+                                    <th className="px-6 py-4 bg-secondary text-white">Mask</th>
+                                    <th className="px-6 py-4 bg-secondary text-white">Link Status</th>
+                                    <th className="px-6 py-4 bg-secondary text-white">Created At</th>
+                                    <th className="px-6 py-4 bg-secondary text-white text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-slate-100">

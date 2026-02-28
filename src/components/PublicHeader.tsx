@@ -17,17 +17,16 @@ export default function PublicHeader() {
     }, []);
 
     return (
-        <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-            scrolled
+        <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled
                 ? "bg-white/90 backdrop-blur-xl border-b border-slate-100 py-3 shadow-sm"
                 : "bg-transparent py-5"
-        }`}>
+            }`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center">
                     {/* Logo */}
                     <div className="flex items-center">
                         <Link href="/">
-                            <img src="/logo-full.png" alt="ThefinU Logo" className="h-9 w-auto" />
+                            <img src="/logo-full.png" alt="ThefinU Logo" className="h-14 w-auto" />
                         </Link>
                     </div>
 

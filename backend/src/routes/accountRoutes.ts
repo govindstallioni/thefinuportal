@@ -8,7 +8,7 @@ const router = express.Router();
 // Get all accounts
 router.get('/', async (req, res) => {
     try {
-        const accounts = await Account.find().populate('user_id', 'email isSubscribed');
+        const accounts = await Account.find().populate('user_id', 'email isSubscribed cancelAtPeriodEnd currentPeriodEnd');
         res.json(accounts);
     } catch (err: any) {
         res.status(500).json({ message: err.message });

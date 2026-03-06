@@ -114,8 +114,6 @@ export default function AccountsPage() {
                                 <tr className="bg-slate-50 text-xs font-semibold uppercase tracking-wider text-slate-500">
                                     <th className="px-6 py-4 bg-secondary text-white">Account Name</th>
                                     <th className="px-6 py-4 bg-secondary text-white">User Email</th>
-                                    <th className="px-6 py-4 bg-secondary text-white">Institution</th>
-                                    <th className="px-6 py-4 bg-secondary text-white">Mask</th>
                                     <th className="px-6 py-4 bg-secondary text-white">Link Status</th>
                                     <th className="px-6 py-4 bg-secondary text-white">Created At</th>
                                     <th className="px-6 py-4 bg-secondary text-white text-center">Action</th>
@@ -143,14 +141,6 @@ export default function AccountsPage() {
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4">
-                                                <span className="rounded-full bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600">
-                                                    {acc.institution_id || "N/A"}
-                                                </span>
-                                            </td>
-                                            <td className="px-6 py-4 text-sm text-slate-500">
-                                                **** {acc.mask || "0000"}
-                                            </td>
-                                            <td className="px-6 py-4">
                                                 {acc.is_linked ? (
                                                     <div className="flex items-center text-emerald-600 text-xs font-medium">
                                                         <CheckCircle2 className="mr-1 h-3 w-3" />
@@ -168,25 +158,22 @@ export default function AccountsPage() {
                                             </td>
                                             <td className="px-6 py-4 text-right">
                                                 <div className="flex items-center justify-end gap-2">
-                                                    {acc.isSubscribed && acc.user_id?.email && (
-                                                        <button
-                                                            onClick={() => acc.user_id?.email && handleUnsubscribe(acc.user_id.email)}
-                                                            disabled={unsubscribingEmail === acc.user_id.email}
-                                                            className="text-red-600 hover:text-red-800 text-xs font-semibold bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
-                                                        >
-                                                            {unsubscribingEmail === acc.user_id.email ? "Canceling..." : "Unsubscribe"}
-                                                        </button>
+                                                    {acc.is_update ? (
+                                                        <span className="text-amber-600 text-xs font-semibold bg-amber-50 px-3 py-1.5 rounded-lg">
+                                                            Sync: New update
+                                                        </span>
+                                                    ) : (
+                                                        <span className="text-emerald-600 text-xs font-semibold bg-emerald-50 px-3 py-1.5 rounded-lg">
+                                                            Sync: up to date
+                                                        </span>
                                                     )}
-                                                    <button className="text-slate-400 hover:text-slate-600">
-                                                        <MoreVertical className="h-5 w-5" />
-                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>
                                     ))
                                 ) : (
                                     <tr>
-                                        <td colSpan={7} className="px-6 py-10 text-center text-slate-500">
+                                        <td colSpan={5} className="px-6 py-10 text-center text-slate-500">
                                             No accounts found.
                                         </td>
                                     </tr>

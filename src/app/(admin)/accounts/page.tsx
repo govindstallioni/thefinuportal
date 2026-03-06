@@ -37,7 +37,7 @@ export default function AccountsPage() {
     }, []);
 
     const handleUnsubscribe = async (email: string) => {
-        if (!window.confirm(`Are you sure you want to cancel the subscription for ${email}?`)) {
+        if (!window.confirm(`Are you sure you want to schedule cancellation for ${email}? The subscription will remain active until the end of the billing period.`)) {
             return;
         }
 
@@ -45,10 +45,10 @@ export default function AccountsPage() {
         try {
             const response = await unsubscribeUser(email);
             if (response.data.status === 'success') {
-                alert('Subscription canceled successfully');
+                alert('Cancellation scheduled. Subscription will remain active until the end of the billing period.');
                 fetchAccounts(); // Refresh the list
             } else {
-                alert('Failed to cancel subscription: ' + response.data.message);
+                alert('Failed to schedule cancellation: ' + response.data.message);
             }
         } catch (error: any) {
             console.error("Error canceling subscription:", error);

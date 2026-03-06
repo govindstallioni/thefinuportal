@@ -10,6 +10,7 @@ export interface ISubscription extends Document {
     status: string;
     currentPeriodEnd: Date;
     paymentEmail: string;
+    cancelAtPeriodEnd: boolean;
 }
 
 const SubscriptionSchema: Schema = new Schema({
@@ -22,6 +23,7 @@ const SubscriptionSchema: Schema = new Schema({
     status: { type: String, required: true },
     currentPeriodEnd: { type: Date, required: true },
     paymentEmail: { type: String, required: true },
+    cancelAtPeriodEnd: { type: Boolean, default: false },
 }, { timestamps: true });
 
 export default mongoose.model<ISubscription>('Subscription', SubscriptionSchema);

@@ -64,6 +64,8 @@ router.post('/validate-user', gasAuth, async (req, res) => {
                 userId: user._id,
                 email: user.email,
                 isSubscribed: user.isSubscribed,
+                currentPeriodEnd: user.currentPeriodEnd,
+                cancelAtPeriodEnd: user.cancelAtPeriodEnd,
                 userCreated,
                 spreadsheetCreated
             }

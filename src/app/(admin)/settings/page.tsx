@@ -19,6 +19,7 @@ export default function SettingsPage() {
         appEmail: "",
         stripePublicKey: "",
         stripeSecretKey: "",
+        stripeWebhookSecret: "",
         stripePaymentMode: "sandbox",
     });
 
@@ -168,6 +169,17 @@ export default function SettingsPage() {
                                 onChange={handleChange}
                                 className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-secondary focus:outline-none"
                                 placeholder="sk_test_..."
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 mb-1">Stripe Webhook Secret</label>
+                            <input
+                                type="password"
+                                name="stripeWebhookSecret"
+                                value={settings.stripeWebhookSecret}
+                                onChange={handleChange}
+                                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-secondary focus:outline-none"
+                                placeholder="whsec_..."
                             />
                         </div>
                         <div>

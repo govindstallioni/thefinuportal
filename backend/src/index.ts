@@ -22,6 +22,9 @@ const PORT = process.env.PORT || 5000;
 console.log(`Port defined: ${PORT}`);
 
 // Middleware
+// Stripe webhook needs raw body for signature verification — must be before express.json()
+app.use('/api/payment/stripe-webhook', express.raw({ type: 'application/json' }));
+app.use('/payment/stripe-webhook', express.raw({ type: 'application/json' }));
 app.use(express.json());
 app.use(cors());
 app.use(helmet());

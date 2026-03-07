@@ -361,7 +361,7 @@ async function handleSubscriptionUpdated(stripeSubscription: Stripe.Subscription
 
     sub.cancelAtPeriodEnd = stripeSubscription.cancel_at_period_end;
     sub.status = stripeSubscription.status;
-    sub.currentPeriodEnd = new Date(stripeSubscription.current_period_end * 1000);
+    sub.currentPeriodEnd = new Date((stripeSubscription as any).current_period_end * 1000);
     await sub.save();
 
     // Sync to user

@@ -38,11 +38,14 @@ export default function PublicHeader() {
                         <Link href="/#how-it-works" className="text-sm font-semibold text-slate-600 hover:text-primary transition-colors">
                             How it Works
                         </Link>
-                        <Link href="/#what-people-say" className="text-sm font-semibold text-slate-600 hover:text-primary transition-colors">
-                            Reviews
-                        </Link>
                         <Link href="/#pricing" className="text-sm font-semibold text-slate-600 hover:text-primary transition-colors">
                             Pricing
+                        </Link>
+                        <Link href="/about" className="text-sm font-semibold text-slate-600 hover:text-primary transition-colors">
+                            About
+                        </Link>
+                        <Link href="/contact" className="text-sm font-semibold text-slate-600 hover:text-primary transition-colors">
+                            Contact
                         </Link>
                     </div>
 
@@ -64,6 +67,8 @@ export default function PublicHeader() {
                             { href: "/#how-it-works", label: "How it Works" },
                             { href: "/#what-people-say", label: "Reviews" },
                             { href: "/#pricing", label: "Pricing" },
+                            { href: "/about", label: "About" },
+                            { href: "/contact", label: "Contact" },
                         ].map((link) => (
                             <Link
                                 key={link.href}

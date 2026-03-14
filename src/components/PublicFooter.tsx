@@ -43,10 +43,12 @@ export default function PublicFooter() {
                         </ul>
                     </div>
 
-                    {/* Legal */}
+                    {/* Company */}
                     <div>
-                        <h4 className="font-bold text-white mb-5 uppercase text-[11px] tracking-[0.15em]">Legal</h4>
+                        <h4 className="font-bold text-white mb-5 uppercase text-[11px] tracking-[0.15em]">Company</h4>
                         <ul className="space-y-3 text-sm text-slate-400 font-medium">
+                            <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
+                            <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
                             <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
                             <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
                         </ul>

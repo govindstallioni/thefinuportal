@@ -19,8 +19,6 @@ import {
     Building2,
     Landmark,
     BadgeCheck,
-    ChevronRight,
-    Sparkles,
     BarChart3,
     Clock,
     Globe,
@@ -89,16 +87,154 @@ function FAQItem({ q, a }: { q: string; a: string }) {
     const [open, setOpen] = useState(false);
     return (
         <div className="border-b border-slate-100 last:border-0">
-            <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between py-5 text-left group">
-                <span className="text-sm font-bold text-slate-900 group-hover:text-primary transition-colors pr-4">{q}</span>
-                <div className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 ${open ? 'bg-primary text-white' : 'bg-slate-100 text-slate-500'}`}>
-                    {open ? <Minus className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
+            <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between py-5 text-left group cursor-pointer">
+                <span className="text-sm font-semibold text-slate-900 group-hover:text-primary transition-colors pr-4">{q}</span>
+                <div className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 ${open ? 'bg-primary text-white rotate-0' : 'bg-slate-100 text-slate-400'}`}>
+                    {open ? <Minus className="h-3 w-3" /> : <Plus className="h-3 w-3" />}
                 </div>
             </button>
             <div className={`faq-answer ${open ? 'open' : ''}`}>
                 <div><p className="pb-5 text-slate-500 leading-relaxed text-sm">{a}</p></div>
             </div>
         </div>
+    );
+}
+
+const STEPS = [
+    {
+        title: "Link your accounts",
+        desc: "Securely connect your bank accounts, credit cards, investments, and loans through Plaid — the same infrastructure trusted by Venmo and Robinhood.",
+        icon: CreditCard,
+        iconColor: "text-blue-500",
+        iconBg: "bg-blue-50",
+        points: ["Connect with 12,000+ banks via Plaid", "Link checking, savings, cards, investments", "Get transaction history imported instantly"],
+        screenshot: "/steps/step-1-link-accounts.png",
+    },
+    {
+        title: "Get automatic updates",
+        desc: "Your transactions, balances, and account details sync automatically per day — completely hands-free, zero manual entry.",
+        icon: RefreshCw,
+        iconColor: "text-emerald-500",
+        iconBg: "bg-emerald-50",
+        points: ["Multiple daily updates — completely hands-free", "Transactions and balances always current", "Never manually enter data again"],
+        screenshot: "/steps/step-2-auto-sync.png",
+    },
+    {
+        title: "Make reports",
+        desc: "Start with ready-made budget templates, then prepare the transactions sheets. Generate the reports monthly and yearly basis.",
+        icon: TrendingUp,
+        iconColor: "text-violet-500",
+        iconBg: "bg-violet-50",
+        points: ["Premade templates", "Generate budgets, net worth trends, and spending breakdowns"],
+        screenshot: "/steps/step-3-customize.png",
+    },
+];
+
+function StepScreenshot({ src, alt }: { src: string; alt: string }) {
+    const [failed, setFailed] = useState(false);
+
+    if (failed) {
+        return (
+            <div className="flex flex-col items-center justify-center text-center p-8 w-full">
+                <div className="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center mb-4">
+                    <FileSpreadsheet className="w-7 h-7 text-slate-300" />
+                </div>
+                <p className="text-xs text-slate-400 font-medium">Screenshot placeholder</p>
+                <p className="text-[10px] text-slate-300 mt-1">Add image to /public/steps/</p>
+            </div>
+        );
+    }
+
+    return (
+        <img
+            src={src}
+            alt={alt}
+            className="w-full h-full object-cover rounded-lg"
+            onError={() => setFailed(true)}
+        />
+    );
+}
+
+function HowItWorksSection({ sectionRef }: { sectionRef: React.RefObject<HTMLDivElement | null> }) {
+    const [activeStep, setActiveStep] = useState(0);
+    const step = STEPS[activeStep];
+
+    return (
+        <section id="how-it-works" className="py-20 bg-slate-50" ref={sectionRef}>
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-14 reveal">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">How It Works</span>
+                    <h2 className="text-2xl md:text-3xl font-bold text-slate-950 mt-2 mb-3">Three simple steps</h2>
+                    <p className="text-slate-400 max-w-md mx-auto text-sm">Get started with automated finance tracking in minutes.</p>
+                </div>
+
+                <div className="reveal">
+                    <div className="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm">
+                        {/* Step tabs integrated into the card */}
+                        <div className="grid grid-cols-3 border-b border-slate-100">
+                            {STEPS.map((s, i) => {
+                                const isActive = activeStep === i;
+                                return (
+                                    <button
+                                        key={i}
+                                        onClick={() => setActiveStep(i)}
+                                        className={`relative flex items-center gap-3 md:gap-4 px-4 py-5 md:px-6 md:py-6 transition-all duration-300 cursor-pointer ${i < 2 ? 'border-r border-slate-100' : ''} ${isActive ? 'bg-white' : 'bg-slate-50/80 hover:bg-slate-50'}`}
+                                    >
+                                        {/* Active indicator — bottom bar */}
+                                        <div className={`absolute bottom-0 left-0 right-0 h-[2px] transition-all duration-300 ${isActive ? 'bg-primary' : 'bg-transparent'}`} />
+
+                                        <span className={`w-8 h-8 md:w-9 md:h-9 rounded-lg text-xs font-bold flex items-center justify-center shrink-0 transition-all duration-300 ${isActive ? 'bg-primary text-white' : 'bg-slate-200/70 text-slate-400'}`}>
+                                            {i + 1}
+                                        </span>
+                                        <div className="hidden sm:block text-left min-w-0">
+                                            <p className={`text-[10px] uppercase tracking-wider font-semibold transition-colors duration-300 ${isActive ? 'text-primary' : 'text-slate-300'}`}>Step {i + 1}</p>
+                                            <h4 className={`text-sm font-bold truncate transition-colors duration-300 ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>
+                                                {s.title}
+                                            </h4>
+                                        </div>
+                                        {/* Mobile: show title below number */}
+                                        <span className={`sm:hidden text-xs font-bold transition-colors duration-300 ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>
+                                            {s.title}
+                                        </span>
+                                    </button>
+                                );
+                            })}
+                        </div>
+
+                        {/* Active step content */}
+                        <div className="grid md:grid-cols-2">
+                            {/* Screenshot area */}
+                            <div className="bg-slate-50/50 p-6 md:p-10 flex items-center justify-center min-h-[280px] md:min-h-[400px] border-b md:border-b-0 md:border-r border-slate-100">
+                                <StepScreenshot key={activeStep} src={step.screenshot} alt={step.title} />
+                            </div>
+
+                            {/* Step details */}
+                            <div className="p-6 md:p-10 flex flex-col justify-center">
+                                <div className="flex items-center gap-3 mb-5">
+                                    <div className={`w-10 h-10 rounded-xl ${step.iconBg} flex items-center justify-center`}>
+                                        <step.icon className={`h-5 w-5 ${step.iconColor}`} />
+                                    </div>
+                                    <div className="h-px flex-1 bg-slate-100" />
+                                    <span className="text-[10px] font-semibold text-slate-300 uppercase tracking-widest">
+                                        {activeStep + 1} / 3
+                                    </span>
+                                </div>
+                                <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-3">{step.title}</h3>
+                                <p className="text-sm text-slate-400 leading-relaxed mb-7">{step.desc}</p>
+                                <ul className="space-y-3.5">
+                                    {step.points.map((point, j) => (
+                                        <li key={j} className="flex items-start text-sm text-slate-600 leading-relaxed">
+                                            <CheckCircle2 className={`h-4 w-4 ${step.iconColor} mr-2.5 shrink-0 mt-0.5`} />
+                                            <span>{point}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     );
 }
 
@@ -114,7 +250,6 @@ export default function HomePage() {
     const statsRef = useReveal();
     const featuresRef = useReveal();
     const howRef = useReveal();
-    const testimonialsRef = useReveal();
     const securityRef = useReveal();
     const pricingRef = useReveal();
     const faqRef = useReveal();
@@ -126,360 +261,176 @@ export default function HomePage() {
             <main className="flex-grow">
 
                 {/* ── HERO ── */}
-                <section className="relative pt-28 pb-16 lg:pt-40 lg:pb-24 overflow-hidden hero-gradient">
-                    <div className="absolute inset-0 dot-pattern" />
-                    <div className="absolute top-20 left-[8%] w-80 h-80 bg-primary/[0.03] rounded-full blur-3xl animate-float" />
-                    <div className="absolute bottom-10 right-[5%] w-[28rem] h-[28rem] bg-secondary/[0.02] rounded-full blur-3xl animate-float-delayed" />
+                <section className="relative pt-32 pb-10 lg:pt-44 lg:pb-10 overflow-hidden bg-slate-50">
 
-                    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                        <div className="text-center max-w-3xl mx-auto">
-                            <div className={`inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-primary/10 rounded-full px-4 py-1.5 mb-7 shadow-sm transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
-                                <span className="relative flex h-2 w-2">
+                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <div className="text-center">
+                            <div className={`inline-flex items-center gap-2 border border-slate-200 rounded-full px-4 py-1.5 mb-8 transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
+                                <span className="relative flex h-1.5 w-1.5">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
                                 </span>
-                                <span className="text-xs font-semibold text-slate-600">Trusted by thousands of spreadsheet lovers</span>
+                                <span className="text-xs font-medium text-slate-500">Trusted by thousands of spreadsheet lovers</span>
                             </div>
 
-                            <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-950 mb-5 leading-[1.1] transition-all duration-1000 delay-100 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                            <h1 className={`text-4xl md:text-5xl lg:text-[3.5rem] font-bold tracking-tight text-slate-950 mb-6 leading-[1.1] transition-all duration-1000 delay-100 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                                 Automate Your Finances
                                 <br className="hidden md:block" />
-                                <span className="relative inline-block mt-1">
-                                    in <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Google Sheets</span>
-                                </span>
+                                in <span className="text-primary">Google Sheets</span>
                             </h1>
 
-                            <p className={`text-sm md:text-base font-medium text-slate-500 mb-8 max-w-xl mx-auto leading-relaxed transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                            <p className={`text-base md:text-lg text-slate-400 mb-10 max-w-xl mx-auto leading-relaxed transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                                 ThefinU syncs your bank transactions, balances, and investments directly into Google Sheets — track your finances with zero effort.
                             </p>
 
-                            <div className={`flex flex-col sm:flex-row items-center justify-center gap-3 transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                            <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                                 <a href={INSTALL_LINK} target="_blank" rel="noopener noreferrer"
-                                    className="group w-full sm:w-auto bg-gradient-to-r from-primary to-secondary text-white px-8 py-3.5 rounded-xl text-base font-bold shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2">
+                                    className="group w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white px-8 py-3.5 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
                                     Install on Google Sheets
-                                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                                    <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
                                 </a>
                             </div>
 
-                            <div className={`mt-5 flex items-center justify-center gap-5 text-xs text-slate-400 transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                                <span className="flex items-center gap-1"><BadgeCheck className="h-3.5 w-3.5 text-emerald-500" /> Free trial</span>
-                                <span className="flex items-center gap-1"><CreditCard className="h-3.5 w-3.5 text-slate-400" /> No card needed</span>
-                                <span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5 text-slate-400" /> 2-min setup</span>
-                            </div>
-
-                            <div className={`mt-4 flex items-center justify-center gap-1.5 text-[11px] text-slate-400 transition-all duration-1000 delay-[900ms] ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                                <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />
-                                <span>Powered by <span className="font-semibold text-slate-500">Plaid</span> — bank-level security</span>
+                            <div className={`mt-8 flex items-center justify-center gap-6 text-xs text-slate-400 transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                                <span className="flex items-center gap-1.5"><BadgeCheck className="h-3.5 w-3.5 text-emerald-500" /> Free trial</span>
+                                <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" /> 2-min setup</span>
                             </div>
                         </div>
 
                         {/* Dashboard Preview */}
-                        <div className={`mt-12 lg:mt-16 relative max-w-5xl mx-auto transition-all duration-1000 delay-[900ms] ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
-                            <div className="absolute -inset-4 bg-gradient-to-r from-primary/8 via-transparent to-secondary/8 rounded-[2rem] blur-2xl" />
-                            <div className="relative bg-white rounded-2xl p-2 shadow-2xl shadow-slate-900/8 border border-slate-200/80">
-                                <div className="bg-white rounded-xl overflow-hidden flex flex-col md:flex-row">
-                                    {/* Sidebar */}
-                                    <div className="hidden md:flex flex-col w-52 bg-slate-50 border-r border-slate-100 p-3.5">
-                                        <div className="flex items-center gap-2 mb-5">
-                                            <div className="w-6 h-6 rounded-md bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                                                <DollarSign className="h-3.5 w-3.5 text-white" />
-                                            </div>
-                                            <span className="font-bold text-slate-800 text-xs">ThefinU</span>
-                                        </div>
-                                        <div className="space-y-0.5 mb-5">
-                                            {[
-                                                { label: "Transactions", icon: FileSpreadsheet, active: true },
-                                                { label: "Balances", icon: Wallet, active: false },
-                                                { label: "Analytics", icon: LineChart, active: false },
-                                                { label: "Budget", icon: PiggyBank, active: false },
-                                            ].map((item, i) => (
-                                                <div key={i} className={`flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[11px] font-semibold ${item.active ? 'bg-primary/10 text-primary' : 'text-slate-400'}`}>
-                                                    <item.icon className="h-3 w-3" />{item.label}
-                                                </div>
-                                            ))}
-                                        </div>
-                                        <div className="mt-auto space-y-2">
-                                            <div className="bg-white p-2.5 rounded-lg border border-slate-100">
-                                                <div className="text-[9px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Net Worth</div>
-                                                <div className="text-base font-bold text-slate-900">$48,230</div>
-                                                <div className="flex items-center gap-0.5 mt-0.5">
-                                                    <ArrowUpRight className="h-2.5 w-2.5 text-emerald-500" />
-                                                    <span className="text-[9px] font-bold text-emerald-600">+4.2%</span>
-                                                </div>
-                                            </div>
-                                            <div className="bg-white p-2.5 rounded-lg border border-slate-100">
-                                                <div className="text-[9px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Spending</div>
-                                                <div className="text-base font-bold text-slate-900">$3,240</div>
-                                                <div className="w-full h-1 bg-slate-100 rounded-full mt-1.5 overflow-hidden">
-                                                    <div className="h-full bg-gradient-to-r from-primary to-secondary rounded-full" style={{ width: '65%' }} />
-                                                </div>
-                                            </div>
+                        <div className={`mt-10 lg:mt-10 relative transition-all duration-1000 delay-[800ms] ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}>
+                            <div className="rounded-xl shadow-2xl shadow-slate-900/10 border border-slate-200/80 overflow-hidden bg-white">
+                                {/* Browser chrome */}
+                                <div className="h-10 bg-slate-100 border-b border-slate-200 flex items-center px-4 gap-3">
+                                    <div className="flex space-x-2">
+                                        <div className="w-3 h-3 rounded-full bg-red-400/80" />
+                                        <div className="w-3 h-3 rounded-full bg-amber-400/80" />
+                                        <div className="w-3 h-3 rounded-full bg-emerald-400/80" />
+                                    </div>
+                                    <div className="flex-1 flex justify-center">
+                                        <div className="flex items-center gap-1.5 bg-white border border-slate-200 rounded-md px-3 py-1 max-w-sm w-full">
+                                            <Lock className="h-2.5 w-2.5 text-emerald-500 shrink-0" />
+                                            <span className="text-[11px] text-slate-400 truncate">docs.google.com/spreadsheets/d/thefinu-finance</span>
                                         </div>
                                     </div>
-                                    {/* Main */}
-                                    <div className="flex-1 flex flex-col">
-                                        <div className="h-9 border-b border-slate-100 flex items-center px-3 justify-between bg-slate-50/60">
-                                            <div className="flex space-x-1.5">
-                                                <div className="w-2 h-2 rounded-full bg-red-300/80" />
-                                                <div className="w-2 h-2 rounded-full bg-amber-300/80" />
-                                                <div className="w-2 h-2 rounded-full bg-emerald-300/80" />
-                                            </div>
-                                            <div className="px-2.5 py-1 bg-white border border-slate-200 rounded text-[10px] font-medium text-slate-400 flex items-center">
-                                                <Lock className="h-2 w-2 mr-1 text-emerald-500" />docs.google.com/spreadsheets
-                                            </div>
-                                            <div className="w-5 h-5 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30" />
-                                        </div>
-                                        <div className="flex-1 overflow-hidden">
-                                            <table className="w-full text-left border-collapse">
-                                                <thead>
-                                                    <tr className="bg-slate-50/80 text-[9px] uppercase tracking-wider text-slate-400 font-bold border-b border-slate-100">
-                                                        <th className="px-3 py-2 border-r border-slate-100">Date</th>
-                                                        <th className="px-3 py-2 border-r border-slate-100">Description</th>
-                                                        <th className="px-3 py-2 border-r border-slate-100 hidden sm:table-cell">Category</th>
-                                                        <th className="px-3 py-2">Amount</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody className="text-xs font-medium">
-                                                    {[
-                                                        { date: "Feb 24", desc: "Whole Foods", cat: "Groceries", amt: "-$84.32", catColor: "bg-emerald-50 text-emerald-700" },
-                                                        { date: "Feb 23", desc: "Apple Music", cat: "Subscriptions", amt: "-$10.99", catColor: "bg-violet-50 text-violet-700" },
-                                                        { date: "Feb 23", desc: "Shell Gas", cat: "Transport", amt: "-$45.00", catColor: "bg-blue-50 text-blue-700" },
-                                                        { date: "Feb 22", desc: "Salary Deposit", cat: "Income", amt: "+$4,200", color: "text-emerald-600", catColor: "bg-emerald-50 text-emerald-700" },
-                                                        { date: "Feb 21", desc: "Starbucks", cat: "Dining", amt: "-$6.50", catColor: "bg-amber-50 text-amber-700" },
-                                                        { date: "Feb 20", desc: "Rent Payment", cat: "Housing", amt: "-$2,100", catColor: "bg-rose-50 text-rose-700" },
-                                                    ].map((row, i) => (
-                                                        <tr key={i} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
-                                                            <td className="px-3 py-2.5 border-r border-slate-50 text-slate-400 text-[11px]">{row.date}</td>
-                                                            <td className="px-3 py-2.5 border-r border-slate-50 font-semibold text-slate-800">{row.desc}</td>
-                                                            <td className="px-3 py-2.5 border-r border-slate-50 hidden sm:table-cell">
-                                                                <span className={`text-[8px] uppercase tracking-wide font-bold px-1.5 py-0.5 rounded-full ${row.catColor}`}>{row.cat}</span>
-                                                            </td>
-                                                            <td className={`px-3 py-2.5 font-bold tabular-nums ${row.color || 'text-slate-900'}`}>{row.amt}</td>
-                                                        </tr>
-                                                    ))}
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                    <div className="w-14" />
                                 </div>
+                                {/* Screenshot */}
+                                <img
+                                    src="/dashboard-preview.png"
+                                    alt="ThefinU Google Sheets Dashboard — transactions, categories, and linked accounts"
+                                    className="w-full block"
+                                />
                             </div>
                         </div>
                     </div>
-                </section>
 
-                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-
-                {/* ── BANK LOGOS ── */}
-                <section className="py-12 bg-slate-50/50 border-y border-slate-100 overflow-hidden">
-                    <p className="text-center text-sm text-slate-500 mb-8 px-4">
-                        Connects with <span className="font-bold text-primary">12,000+</span> financial institutions via Plaid
-                    </p>
-                    <div className="space-y-3">
-                        {bankRows.map((row, rowIndex) => (
-                            <div key={rowIndex} className="relative">
-                                <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-slate-50/50 to-transparent z-10" />
-                                <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-slate-50/50 to-transparent z-10" />
-                                <div className={`flex gap-3 ${rowIndex === 0 ? 'animate-marquee' : 'animate-marquee-reverse'}`}>
-                                    {[...row, ...row].map((bank, i) => {
-                                        const colors = ["text-rose-400", "text-blue-400", "text-emerald-400", "text-violet-400", "text-amber-400", "text-cyan-400", "text-pink-400", "text-indigo-400", "text-teal-400", "text-orange-400", "text-fuchsia-400", "text-sky-400"];
-                                        return (
-                                            <div key={i} className="flex-shrink-0 px-4 py-2.5 bg-white rounded-lg border border-slate-100 text-sm font-semibold text-slate-500 whitespace-nowrap flex items-center gap-2">
-                                                <Building2 className={`h-3.5 w-3.5 ${colors[i % colors.length]}`} />{bank}
+                    {/* ── BANK LOGOS ── */}
+                    <div className="mt-14 lg:mt-16 overflow-hidden">
+                        <p className="text-center text-sm text-slate-400 mb-6 px-4">
+                            Connects with <span className="font-semibold text-slate-600">12,000+</span> financial institutions via Plaid
+                        </p>
+                        <div className="space-y-2.5">
+                            {bankRows.map((row, rowIndex) => (
+                                <div key={rowIndex} className="relative">
+                                    <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-slate-50 to-transparent z-10" />
+                                    <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-slate-50 to-transparent z-10" />
+                                    <div className={`flex gap-2.5 ${rowIndex === 0 ? 'animate-marquee' : 'animate-marquee-reverse'}`}>
+                                        {[...row, ...row].map((bank, i) => (
+                                            <div key={i} className="flex-shrink-0 px-3.5 py-2 bg-slate-50 rounded-lg border border-slate-100 text-xs font-medium text-slate-500 whitespace-nowrap flex items-center gap-1.5">
+                                                <Building2 className="h-3 w-3 text-slate-300" />{bank}
                                             </div>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </section>
-
-                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-
-                {/* ── STATS ── */}
-                <section className="py-16 bg-gradient-to-b from-white to-slate-50/30" ref={statsRef}>
-                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            {[
-                                { value: 12000, suffix: "+", label: "Institutions", icon: Landmark, iconBg: "bg-rose-50", iconColor: "text-rose-500" },
-                                { value: 50, suffix: "+", label: "Countries", icon: Globe, iconBg: "bg-blue-50", iconColor: "text-blue-500" },
-                                { value: 256, suffix: "-bit", label: "Encryption", icon: ShieldCheck, iconBg: "bg-emerald-50", iconColor: "text-emerald-500" },
-                                { value: 99, suffix: ".9%", label: "Uptime", icon: Zap, iconBg: "bg-amber-50", iconColor: "text-amber-500" },
-                            ].map((stat, i) => (
-                                <div key={i} className={`reveal reveal-delay-${i + 1} group text-center p-5 rounded-xl bg-white border border-slate-200 transition-all duration-300`}>
-                                    <div className={`inline-flex items-center justify-center w-9 h-9 rounded-lg ${stat.iconBg} ${stat.iconColor} mb-3`}>
-                                        <stat.icon className="h-4 w-4" />
+                                        ))}
                                     </div>
-                                    <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-1">
-                                        <AnimatedCounter end={stat.value} suffix={stat.suffix} />
-                                    </div>
-                                    <div className="w-8 h-0.5 bg-gradient-to-r from-primary/40 to-secondary/20 rounded-full mx-auto mb-2" />
-                                    <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{stat.label}</div>
                                 </div>
                             ))}
                         </div>
                     </div>
                 </section>
-
-                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
                 {/* ── FEATURES ── */}
-                <section id="features" className="py-20 bg-slate-50/40" ref={featuresRef}>
+                <section id="features" className="py-20" ref={featuresRef}>
                     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-12 reveal">
-                            <h2 className="text-2xl md:text-3xl font-bold text-slate-950 mb-3">Everything you need to manage money</h2>
-                            <p className="text-slate-500 max-w-lg mx-auto text-sm">Finance app power meets spreadsheet flexibility.</p>
+                        <div className="text-center mb-14 reveal">
+                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">Features</span>
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-950 mt-2 mb-3">Everything you need to manage money</h2>
+                            <p className="text-slate-400 max-w-md mx-auto text-sm">Finance app power meets spreadsheet flexibility.</p>
                         </div>
 
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {[
-                                { title: "Automatic daily syncs", desc: "Transactions, balances, and accounts sync multiple times per day. No CSV imports needed.", icon: RefreshCw, iconColor: "text-emerald-500", iconBg: "bg-emerald-50" },
-                                { title: "Ready-made templates", desc: "Budget trackers, net worth dashboards, expense reports — pro templates out of the box.", icon: Layers, iconColor: "text-violet-500", iconBg: "bg-violet-50" },
-                                { title: "100% customizable", desc: "Add formulas, pivot tables, charts — anything Sheets supports. Your data, your rules.", icon: TableIcon, iconColor: "text-blue-500", iconBg: "bg-blue-50" },
-                                { title: "Multi-account support", desc: "Banks, credit cards, investments, loans, crypto — all visible in one spreadsheet.", icon: CreditCard, iconColor: "text-rose-500", iconBg: "bg-rose-50" },
-                                { title: "Smart categorization", desc: "Transactions auto-categorize so you instantly see where your money goes.", icon: BarChart3, iconColor: "text-amber-500", iconBg: "bg-amber-50" },
-                                { title: "Works on any device", desc: "Desktop, tablet, or phone — Google Sheets works seamlessly everywhere.", icon: Smartphone, iconColor: "text-cyan-500", iconBg: "bg-cyan-50" }
+                                { title: "Automatic daily syncs", desc: "Transactions, balances, and accounts sync per day. No CSV imports needed.", icon: RefreshCw, color: "text-emerald-500" },
+                                { title: "Ready-made templates", desc: "Budget trackers, net worth dashboards, expense reports — pro templates out of the box.", icon: Layers, color: "text-violet-500" },
+                                { title: "Multi-account support", desc: "Banks, credit cards, investments, loans, crypto — all visible in one spreadsheet.", icon: CreditCard, color: "text-rose-500" },
+                                { title: "Smart categorization", desc: "Categories help classify transactions, making it easier to see where your money goes.", icon: BarChart3, color: "text-amber-500" },
+                                { title: "Budget reports", desc: "Generate monthly and yearly budgets, net worth trends, and spending breakdowns — all from your account transactions.", icon: FileSpreadsheet, color: "text-blue-500" },
+                                { title: "Works on any device", desc: "Desktop, tablet, or phone — Google Sheets works seamlessly everywhere.", icon: Smartphone, color: "text-cyan-500" }
                             ].map((item, i) => (
-                                <div key={i} className={`reveal reveal-delay-${(i % 3) + 1} group card-shine bg-white rounded-xl p-6 border border-slate-200 transition-all duration-300`}>
-                                    <div className={`w-10 h-10 rounded-xl ${item.iconBg} flex items-center justify-center ${item.iconColor} mb-4 group-hover:scale-110 transition-transform`}>
-                                        <item.icon className="h-5 w-5" />
-                                    </div>
-                                    <h4 className="text-sm font-bold text-slate-950 mb-1.5">{item.title}</h4>
-                                    <p className="text-slate-500 leading-relaxed text-sm">{item.desc}</p>
+                                <div key={i} className={`reveal reveal-delay-${(i % 3) + 1} group p-6 rounded-xl border border-slate-100 hover:border-slate-200 transition-all duration-300`}>
+                                    <item.icon className={`h-5 w-5 ${item.color} mb-4`} />
+                                    <h4 className="text-sm font-bold text-slate-900 mb-1.5">{item.title}</h4>
+                                    <p className="text-slate-400 leading-relaxed text-sm">{item.desc}</p>
                                 </div>
                             ))}
                         </div>
                     </div>
                 </section>
 
-                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+                <div className="max-w-5xl mx-auto px-8"><div className="h-px bg-slate-100" /></div>
 
                 {/* ── HOW IT WORKS ── */}
-                <section id="how-it-works" className="py-20 bg-white" ref={howRef}>
-                    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-12 reveal">
-                            <h2 className="text-2xl md:text-3xl font-bold text-slate-950 mb-3">How it works</h2>
-                            <p className="text-slate-500 max-w-lg mx-auto text-sm">Three simple steps to automated finance tracking.</p>
-                        </div>
+                <HowItWorksSection sectionRef={howRef} />
 
-                        <div className="grid lg:grid-cols-3 gap-5">
-                            {[
-                                { step: "01", title: "Link your accounts", icon: CreditCard, iconBg: "bg-blue-50", iconColor: "text-blue-500",
-                                  points: ["Connect with 12,000+ banks via Plaid", "Link checking, savings, cards, investments", "Get transaction history imported instantly"] },
-                                { step: "02", title: "Get automatic updates", icon: RefreshCw, iconBg: "bg-emerald-50", iconColor: "text-emerald-500",
-                                  points: ["Multiple daily updates — completely hands-free", "Transactions and balances always current", "Never manually enter data again"] },
-                                { step: "03", title: "Make it your own", icon: TrendingUp, iconBg: "bg-violet-50", iconColor: "text-violet-500",
-                                  points: ["Start with premade budget templates", "Add formulas, charts, and pivot tables", "Build dashboards on top of live data"] }
-                            ].map((step, i) => (
-                                <div key={i} className={`reveal reveal-delay-${i + 1} group ${i < 2 ? 'timeline-connector' : ''}`}>
-                                    <div className="bg-white p-6 rounded-xl border border-slate-200 transition-all duration-300 h-full flex flex-col">
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-xs font-bold shrink-0">
-                                                {i + 1}
-                                            </div>
-                                            <div className={`w-11 h-11 rounded-xl ${step.iconBg} flex items-center justify-center ${step.iconColor} group-hover:scale-105 transition-transform`}>
-                                                <step.icon className="h-5 w-5" />
-                                            </div>
-                                        </div>
-                                        <h4 className="text-sm font-bold text-slate-950 mb-3">{step.title}</h4>
-                                        <ul className="space-y-2 mb-auto">
-                                            {step.points.map((point, j) => (
-                                                <li key={j} className="flex items-start text-sm text-slate-500 leading-relaxed">
-                                                    <CheckCircle2 className={`h-3.5 w-3.5 ${step.iconColor} mr-2 shrink-0 mt-0.5`} />
-                                                    <span>{point}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                <div className="max-w-5xl mx-auto px-8"><div className="h-px bg-slate-100" /></div>
 
-                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-
-                {/* ── TESTIMONIALS ── */}
-                <section id="what-people-say" className="py-20 bg-slate-50/40" ref={testimonialsRef}>
-                    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-12 reveal">
-                            <h2 className="text-2xl md:text-3xl font-bold text-slate-950 mb-3">What people say</h2>
-                            <p className="text-slate-500 max-w-lg mx-auto text-sm">See why thousands trust ThefinU for finance tracking.</p>
-                        </div>
-
-                        {/* Featured */}
-                        <div className="reveal mb-8">
-                            <div className="relative bg-white rounded-xl border border-slate-200 p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center shadow-sm">
-                                <div className="absolute top-4 right-6 text-6xl font-serif text-primary/[0.07] leading-none select-none">&ldquo;</div>
-                                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-lg font-bold shrink-0">JR</div>
-                                <div>
-                                    <div className="flex gap-0.5 mb-3">{[...Array(5)].map((_, j) => <Star key={j} className="h-4 w-4 text-amber-400 fill-amber-400" />)}</div>
-                                    <p className="text-sm text-slate-700 leading-relaxed mb-3">
-                                        &ldquo;I&apos;ve tried every budgeting app — Mint, YNAB, Copilot — but nothing gives me the control a spreadsheet does. ThefinU is the missing piece.&rdquo;
-                                    </p>
-                                    <div className="text-sm"><span className="font-bold text-slate-900">Jason Rivera</span> <span className="text-slate-400">/ Product Manager</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="grid md:grid-cols-3 gap-5">
-                            {[
-                                { quote: "Makes budgeting in Sheets so convenient. I finally have a system I stick with!", author: "Cameron Kelley", role: "Designer", avatar: "CK", gradient: "from-violet-500 to-purple-600" },
-                                { quote: "Customer support is exceptional. They genuinely care about making a great product.", author: "Sarah Mason", role: "Business Owner", avatar: "SM", gradient: "from-rose-500 to-pink-600" },
-                                { quote: "Templates are incredibly well-designed. Combined with auto-sync, it's perfect.", author: "Matt Loh", role: "Engineer", avatar: "ML", gradient: "from-blue-500 to-cyan-600" }
-                            ].map((t, i) => (
-                                <div key={i} className={`reveal reveal-delay-${i + 1} bg-white p-5 rounded-xl border border-slate-200 transition-all duration-300 flex flex-col`}>
-                                    <div className="flex gap-0.5 mb-3">{[...Array(5)].map((_, j) => <Star key={j} className="h-3 w-3 text-amber-400 fill-amber-400" />)}</div>
-                                    <p className="text-sm text-slate-600 leading-relaxed mb-4 flex-1">&ldquo;{t.quote}&rdquo;</p>
-                                    <div className="flex items-center gap-2.5">
-                                        <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${t.gradient} flex items-center justify-center text-white text-[10px] font-bold`}>{t.avatar}</div>
-                                        <div><div className="font-bold text-slate-900 text-sm">{t.author}</div><div className="text-sm text-slate-400">{t.role}</div></div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
                 {/* ── SECURITY ── */}
-                <section className="py-20 bg-white" ref={securityRef}>
-                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="reveal bg-slate-50/60 rounded-2xl border border-slate-200 overflow-hidden">
-                            <div className="grid md:grid-cols-2 gap-0">
-                                <div className="bg-gradient-to-br from-emerald-50/80 via-white to-teal-50/30 p-8 md:p-10 flex flex-col justify-center items-center">
-                                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/15 mb-6">
-                                        <ShieldCheck className="h-8 w-8 text-white" />
+                <section className="py-20" ref={securityRef}>
+                    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-14 reveal">
+                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">Security</span>
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-950 mt-2 mb-3">Private and secure</h2>
+                            <p className="text-slate-400 max-w-md mx-auto text-sm">
+                                ThefinU never accesses your bank credentials and never sells your data.
+                            </p>
+                        </div>
+
+                        <div className="reveal">
+                            {/* Security badges */}
+                            <div className="grid grid-cols-3 gap-4 md:gap-6 max-w-lg mx-auto mb-12">
+                                {[
+                                    { icon: Lock, label: "256-bit", desc: "AES Encryption", color: "text-blue-500", bg: "bg-blue-50" },
+                                    { icon: BadgeCheck, label: "SOC 2", desc: "Compliant", color: "text-emerald-500", bg: "bg-emerald-50" },
+                                    { icon: ShieldCheck, label: "Read-only", desc: "Access Only", color: "text-amber-500", bg: "bg-amber-50" },
+                                ].map((b, i) => (
+                                    <div key={i} className="text-center p-4 md:p-5 rounded-xl border border-slate-100 bg-white">
+                                        <div className={`w-10 h-10 rounded-xl ${b.bg} flex items-center justify-center mx-auto mb-3`}>
+                                            <b.icon className={`h-5 w-5 ${b.color}`} />
+                                        </div>
+                                        <div className="text-sm font-bold text-slate-900">{b.label}</div>
+                                        <div className="text-[11px] text-slate-400 mt-0.5">{b.desc}</div>
                                     </div>
-                                    <div className="flex gap-3">
-                                        {[
-                                            { icon: Lock, label: "256-bit", iconColor: "text-blue-500", bg: "bg-blue-50" },
-                                            { icon: BadgeCheck, label: "SOC 2", iconColor: "text-emerald-500", bg: "bg-emerald-50" },
-                                            { icon: ShieldCheck, label: "Read-only", iconColor: "text-amber-500", bg: "bg-amber-50" },
-                                        ].map((b, i) => (
-                                            <div key={i} className="bg-white rounded-lg p-2.5 text-center border border-slate-200">
-                                                <div className={`w-7 h-7 rounded-md ${b.bg} flex items-center justify-center mx-auto mb-1`}>
-                                                    <b.icon className={`h-3.5 w-3.5 ${b.iconColor}`} />
-                                                </div>
-                                                <div className="text-xs font-bold text-slate-600">{b.label}</div>
-                                            </div>
-                                        ))}
-                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Security details */}
+                            <div className="bg-slate-950 rounded-xl p-8 md:p-10 max-w-2xl mx-auto">
+                                <div className="grid sm:grid-cols-2 gap-6">
+                                    {[
+                                        { text: "Credentials never touch our servers", icon: Lock },
+                                        { text: "Data encrypted in transit and at rest", icon: ShieldCheck },
+                                        { text: "Read-only — we can never move money", icon: BadgeCheck },
+                                        { text: "Disconnect accounts anytime", icon: CheckCircle2 },
+                                    ].map((item, i) => (
+                                        <div key={i} className="flex items-start gap-3">
+                                            <item.icon className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
+                                            <span className="text-sm text-slate-300 leading-relaxed">{item.text}</span>
+                                        </div>
+                                    ))}
                                 </div>
-                                <div className="p-8 md:p-10 flex flex-col justify-center">
-                                    <h2 className="text-xl md:text-2xl font-bold text-slate-950 mb-3">Private and secure</h2>
-                                    <p className="text-sm text-slate-500 leading-relaxed mb-5">
-                                        ThefinU never accesses your bank credentials and never sells your data. Plaid&apos;s bank-level security keeps your info safe.
-                                    </p>
-                                    <ul className="space-y-2.5 mb-5">
-                                        {["Credentials never touch our servers", "Data encrypted in transit and at rest", "Read-only — we can never move money", "Disconnect accounts anytime"].map((p, i) => (
-                                            <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
-                                                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 shrink-0 mt-0.5" />{p}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <Link href="/privacy" className="text-sm text-primary font-bold hover:underline inline-flex items-center gap-1 group w-fit">
+                                <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                                    <p className="text-xs text-slate-500">Powered by <span className="text-white font-semibold">Plaid</span> — bank-level security infrastructure</p>
+                                    <Link href="/privacy" className="text-sm text-white font-semibold hover:text-primary inline-flex items-center gap-1.5 group transition-colors">
                                         Privacy policy <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
                                     </Link>
                                 </div>
@@ -488,73 +439,84 @@ export default function HomePage() {
                     </div>
                 </section>
 
-                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+                <div className="max-w-5xl mx-auto px-8"><div className="h-px bg-slate-100" /></div>
 
                 {/* ── PRICING ── */}
-                <section id="pricing" className="py-20 bg-slate-50/40" ref={pricingRef}>
-                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-10 reveal">
-                            <h2 className="text-2xl md:text-3xl font-bold text-slate-950 mb-3">Simple, transparent pricing</h2>
-                            <p className="text-slate-500 text-sm">One plan. Everything included.</p>
+                <section id="pricing" className="py-20 bg-slate-50" ref={pricingRef}>
+                    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-14 reveal">
+                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">Pricing</span>
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-950 mt-2 mb-3">Simple, transparent pricing</h2>
+                            <p className="text-slate-400 text-sm">One plan. Everything included.</p>
                         </div>
 
-                        <div className="reveal grid md:grid-cols-2 gap-6 items-start max-w-3xl mx-auto">
-                            <div className="gradient-border-card glow-primary bg-white rounded-2xl p-7 relative overflow-hidden">
-                                <div className="absolute top-0 right-0 bg-gradient-to-l from-primary to-secondary text-white text-[9px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">Best value</div>
-                                <div className="text-sm font-bold text-primary mb-1.5">ThefinU Pro</div>
-                                <div className="flex items-end gap-1 mb-0.5">
-                                    <span className="text-4xl font-bold text-slate-950">$29</span>
-                                    <span className="text-sm font-medium text-slate-400 pb-0.5">/ year</span>
-                                </div>
-                                <div className="text-sm text-slate-500 mb-5">That&apos;s just <span className="font-bold text-primary">$2.42/month</span></div>
-                                <div className="h-px bg-slate-100 mb-5" />
-                                <ul className="space-y-2.5 mb-6">
-                                    {["Unlimited bank connections", "Multiple daily auto-syncs", "Full transaction history", "Free templates", "Smart categorization", "Priority support", "14-day free trial"].map((f, i) => (
-                                        <li key={i} className="flex items-center gap-2 text-sm text-slate-600">
-                                            <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />{f}
-                                        </li>
-                                    ))}
-                                </ul>
-                                <a href={INSTALL_LINK} target="_blank" rel="noopener noreferrer"
-                                    className="group w-full bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-xl text-sm font-bold shadow-sm shadow-primary/20 hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-1.5">
-                                    Install on Google Sheets <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-                                </a>
-                            </div>
-
-                            <div className="space-y-4">
-                                <h3 className="text-lg font-bold text-slate-950">Why it&apos;s worth it</h3>
-                                <p className="text-sm text-slate-500 leading-relaxed">Most people spend 2-4 hours/month manually tracking finances. ThefinU saves all that — for less than a coffee per month.</p>
-                                {[
-                                    { icon: Clock, title: "Save 30+ hours/year", desc: "No more manual data entry or CSV exports.", iconBg: "bg-blue-50", iconColor: "text-blue-500" },
-                                    { icon: CircleDollarSign, title: "Cheaper than alternatives", desc: "YNAB: $99/yr. Copilot: $96/yr. ThefinU: $29/yr.", iconBg: "bg-emerald-50", iconColor: "text-emerald-500" },
-                                    { icon: LineChart, title: "Better awareness", desc: "Tracking spending reduces unnecessary expenses by 15%.", iconBg: "bg-amber-50", iconColor: "text-amber-500" },
-                                    { icon: Users, title: "Share with partner", desc: "Collaborate using Google Sheets sharing.", iconBg: "bg-violet-50", iconColor: "text-violet-500" },
-                                ].map((item, i) => (
-                                    <div key={i} className="flex gap-3 p-3.5 rounded-xl bg-white border border-slate-200 transition-all">
-                                        <div className={`w-9 h-9 rounded-lg ${item.iconBg} flex items-center justify-center ${item.iconColor} shrink-0`}>
-                                            <item.icon className="h-4 w-4" />
+                        <div className="reveal max-w-4xl mx-auto">
+                            <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+                                <div className="grid md:grid-cols-5">
+                                    {/* Left: Plan details */}
+                                    <div className="md:col-span-3 p-8 md:p-10">
+                                        <div className="flex items-center gap-3 mb-6">
+                                            <span className="text-xs font-semibold text-primary uppercase tracking-wider bg-primary/5 px-3 py-1 rounded-full">ThefinU Pro</span>
+                                            <span className="text-[10px] font-semibold text-white bg-slate-900 px-2.5 py-0.5 rounded-full uppercase tracking-wider">Best value</span>
                                         </div>
-                                        <div>
-                                            <div className="text-sm font-bold text-slate-900">{item.title}</div>
-                                            <div className="text-sm text-slate-500 mt-0.5">{item.desc}</div>
+                                        <div className="flex items-end gap-1.5 mb-1">
+                                            <span className="text-5xl font-bold text-slate-950">$29</span>
+                                            <span className="text-base text-slate-400 pb-1.5">/ year</span>
+                                        </div>
+                                        <p className="text-sm text-slate-400 mb-8">That&apos;s just <span className="font-semibold text-primary">$2.42/month</span> — less than a coffee</p>
+
+                                        <div className="grid sm:grid-cols-2 gap-x-6 gap-y-3 mb-8">
+                                            {["Unlimited bank connections", "Multiple daily auto-syncs", "Full transaction history", "Free templates", "Smart categorization", "Priority support", "14-day free trial"].map((f, i) => (
+                                                <div key={i} className="flex items-center gap-2 text-sm text-slate-600">
+                                                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 shrink-0" />{f}
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <a href={INSTALL_LINK} target="_blank" rel="noopener noreferrer"
+                                            className="group inline-flex bg-slate-900 hover:bg-slate-800 text-white px-8 py-3.5 rounded-lg text-sm font-semibold transition-all duration-200 items-center gap-2 active:scale-[0.98] cursor-pointer">
+                                            Install on Google Sheets <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                                        </a>
+                                    </div>
+
+                                    {/* Right: Why it's worth it */}
+                                    <div className="md:col-span-2 bg-slate-50 p-8 md:p-10 border-t md:border-t-0 md:border-l border-slate-100">
+                                        <h3 className="text-sm font-bold text-slate-900 mb-2">Why it&apos;s worth it</h3>
+                                        <p className="text-xs text-slate-400 leading-relaxed mb-6">Most people spend 2-4 hours/month manually tracking finances. ThefinU saves all that.</p>
+                                        <div className="space-y-5">
+                                            {[
+                                                { icon: Clock, title: "Save 30+ hours/year", desc: "No more manual data entry or CSV exports.", color: "text-blue-500" },
+                                                { icon: CircleDollarSign, title: "Cheaper than alternatives", desc: "YNAB: $99/yr. Copilot: $96/yr. ThefinU: $29/yr.", color: "text-emerald-500" },
+                                                { icon: LineChart, title: "Better awareness", desc: "Tracking spending reduces expenses by 15%.", color: "text-amber-500" },
+                                                { icon: Users, title: "Share with partner", desc: "Collaborate using Google Sheets sharing.", color: "text-violet-500" },
+                                            ].map((item, i) => (
+                                                <div key={i} className="flex gap-3">
+                                                    <item.icon className={`h-4 w-4 ${item.color} shrink-0 mt-0.5`} />
+                                                    <div>
+                                                        <div className="text-sm font-semibold text-slate-800">{item.title}</div>
+                                                        <div className="text-xs text-slate-400 mt-0.5">{item.desc}</div>
+                                                    </div>
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
-                                ))}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+                <div className="max-w-5xl mx-auto px-8"><div className="h-px bg-slate-100" /></div>
 
                 {/* ── FAQ ── */}
-                <section className="py-20 bg-white" ref={faqRef}>
+                <section className="py-20" ref={faqRef}>
                     <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-10 reveal">
-                            <h2 className="text-2xl md:text-3xl font-bold text-slate-950 mb-3">Frequently asked questions</h2>
-                            <p className="text-slate-500 text-sm">Everything you need to know.</p>
+                        <div className="text-center mb-14 reveal">
+                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">FAQ</span>
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-950 mt-2 mb-3">Frequently asked questions</h2>
+                            <p className="text-slate-400 text-sm">Everything you need to know.</p>
                         </div>
-                        <div className="reveal bg-white rounded-xl border border-slate-200 p-6 md:p-8">
+                        <div className="reveal">
                             {[
                                 { q: "How does ThefinU connect to my bank?", a: "Via Plaid — the same service used by Venmo, Robinhood, and thousands of apps. Your credentials go directly to Plaid; we never see them." },
                                 { q: "Is my financial data secure?", a: "Yes. 256-bit encryption, read-only access only. We can never initiate transactions or move your money." },
@@ -567,33 +529,23 @@ export default function HomePage() {
                     </div>
                 </section>
 
-                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-
                 {/* ── FINAL CTA ── */}
-                <section className="py-20 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
-                    <div className="absolute inset-0 grid-pattern opacity-40" />
-                    <div className="absolute top-10 left-[10%] w-40 h-40 bg-primary/20 rounded-full blur-3xl animate-float" />
-                    <div className="absolute bottom-10 right-[10%] w-48 h-48 bg-secondary/15 rounded-full blur-3xl animate-float-delayed" />
-
-                    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+                <section className="py-20 bg-slate-950">
+                    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                             Ready to take control of your finances?
                         </h2>
                         <p className="text-sm text-slate-400 mb-8 max-w-lg mx-auto">
                             Join thousands managing money smarter with ThefinU and Google Sheets.
                         </p>
-                        <div className="relative inline-flex">
-                            <div className="absolute -inset-1 bg-white/20 rounded-2xl blur-md animate-pulse-glow" />
-                            <a href={INSTALL_LINK} target="_blank" rel="noopener noreferrer"
-                                className="relative group inline-flex bg-white text-slate-900 px-8 py-3.5 rounded-xl text-base font-bold shadow-xl hover:shadow-2xl hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 items-center gap-2">
-                                Install on Google Sheets <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                            </a>
-                        </div>
-                        <div className="mt-5 flex items-center justify-center gap-5 text-xs text-slate-500">
-                            <span className="flex items-center gap-1"><BadgeCheck className="h-3.5 w-3.5 text-emerald-400" /> Free trial</span>
-                            <span className="flex items-center gap-1"><ShieldCheck className="h-3.5 w-3.5 text-emerald-400" /> Secure</span>
-                            <span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5 text-slate-500" /> 2-min setup</span>
+                        <a href={INSTALL_LINK} target="_blank" rel="noopener noreferrer"
+                            className="group inline-flex bg-white text-slate-900 px-8 py-3.5 rounded-lg text-sm font-semibold hover:bg-slate-100 active:scale-[0.98] transition-all duration-200 items-center gap-2 cursor-pointer">
+                            Install on Google Sheets <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                        </a>
+                        <div className="mt-6 flex items-center justify-center gap-6 text-xs text-slate-500">
+                            <span className="flex items-center gap-1.5"><BadgeCheck className="h-3.5 w-3.5 text-emerald-400" /> Free trial</span>
+                            <span className="flex items-center gap-1.5"><ShieldCheck className="h-3.5 w-3.5 text-emerald-400" /> Secure</span>
+                            <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" /> 2-min setup</span>
                         </div>
                     </div>
                 </section>

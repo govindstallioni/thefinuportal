@@ -30,11 +30,11 @@ export default function TermsPage() {
                         </div>
 
                         <section>
-                            <h2 className="text-2xl font-bold text-slate-900 mt-12 mb-4">1. Eligibility and Service Acknowledgment</h2>
+                            <h2 className="text-xl font-bold text-slate-900 mt-12 mb-4">1. Eligibility and Service Acknowledgment</h2>
                             <p>
                                 ThefinU’s Services are offered and available only to users 18 years of age or older who reside in the United States or Canada. By using the Services, you represent and warrant that you meet all the foregoing eligibility requirements.
                             </p>
-                            <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">You Acknowledge and Agree That:</h3>
+                            <h3 className="text-md font-bold text-slate-900 mt-6 mb-3">You Acknowledge and Agree That:</h3>
                             <ul className="list-disc pl-6 space-y-3">
                                 <li><strong>ThefinU is Not a Financial Institution:</strong> ThefinU is not a bank, investment advisor, financial planner, broker, or asset manager. The Services are merely tools to augment your financial tracking and decision-making. You are solely responsible for your savings, investment, and spending decisions.</li>
                                 <li><strong>Accuracy:</strong> We do not guarantee the Services will be uninterrupted, timely, secure, or error-free. We are not responsible for delays, data corruption, or delivery failures resulting from internet traffic, third-party services, or issues with your Google or Plaid account.</li>
@@ -42,8 +42,8 @@ export default function TermsPage() {
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-bold text-slate-900 mt-12 mb-4">2. Linking Data Source Accounts and Data Aggregation (Plaid)</h2>
-                            <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">A. Authorization for Data Retrieval</h3>
+                            <h2 className="text-xl font-bold text-slate-900 mt-12 mb-4">2. Linking Data Source Accounts and Data Aggregation (Plaid)</h2>
+                            <h3 className="text-md font-bold text-slate-900 mt-6 mb-3">A. Authorization for Data Retrieval</h3>
                             <p>
                                 The Services facilitate the updating of your financial spreadsheets with up-to-date financial data ("Financial Data") retrieved from your banks, credit cards, and other third-party financial sources ("Data Sources").
                             </p>
@@ -53,33 +53,33 @@ export default function TermsPage() {
                             <p className="p-4 bg-slate-50 rounded-lg italic text-slate-600 border border-slate-100">
                                 YOU ACKNOWLEDGE AND AGREE THAT WHEN THEFINU, EITHER DIRECTLY OR THROUGH PLAID, ACCESSES AND RETRIEVES INFORMATION FROM THIRD PARTY SITES, THEFINU IS ACTING AS YOUR AGENT, AND NOT THE AGENT OR ON BEHALF OF THE THIRD PARTY.
                             </p>
-                            <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">B. Plaid Disclosure</h3>
+                            <h3 className="text-md font-bold text-slate-900 mt-6 mb-3">B. Plaid Disclosure</h3>
                             <p>
                                 You acknowledge that Plaid, Inc. is a third-party service provider to ThefinU. For more information on how Plaid collects, uses, stores, and handles your data, please see Plaid’s commitment to its end-users on their official website.
                             </p>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-bold text-slate-900 mt-12 mb-4">3. Subscription, Free Trials, and Cancellation</h2>
-                            <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">A. Subscription and Billing</h3>
+                            <h2 className="text-xl font-bold text-slate-900 mt-12 mb-4">3. Subscription, Free Trials, and Cancellation</h2>
+                            <h3 className="text-md font-bold text-slate-900 mt-6 mb-3">A. Subscription and Billing</h3>
                             <p>The Services are offered on an Annual subscription basis.</p>
-                            <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">B. Free Trial</h3>
+                            <h3 className="text-md font-bold text-slate-900 mt-6 mb-3">B. Free Trial</h3>
                             <p>
                                 You may be offered a 14-day free trial of the Services. If you do not cancel before the end of the free trial period, your subscription will automatically convert to a paid annual subscription, and your payment method will be charged the full annual fee.
                             </p>
-                            <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">C. Cancellation and Refunds</h3>
+                            <h3 className="text-md font-bold text-slate-900 mt-6 mb-3">C. Cancellation and Refunds</h3>
                             <p>
                                 You may cancel your subscription at any time via your account management dashboard or by contacting us at <a href="mailto:support@thefinu.com" className="text-secondary hover:underline">support@thefinu.com</a>. Your service remains active until the end of your current billing cycle after you cancel, and you will not be charged again for any future billing cycles. ThefinU does not provide refunds, pro-rated or otherwise, for any unused portion of your annual subscription term. All subscription fees paid are non-refundable.
                             </p>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-bold text-slate-900 mt-12 mb-4">4. Privacy and Google Workspace Marketplace Compliance</h2>
-                            <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">A. Privacy Policy</h3>
+                            <h2 className="text-xl font-bold text-slate-900 mt-12 mb-4">4. Privacy and Google Workspace Marketplace Compliance</h2>
+                            <h3 className="text-md font-bold text-slate-900 mt-6 mb-3">A. Privacy Policy</h3>
                             <p>
                                 Your use of our Services is also governed by our Privacy Policy, which is incorporated by reference into these Terms. Please review it at: <Link href="/privacy" className="text-secondary hover:underline font-medium">/privacy</Link>.
                             </p>
-                            <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">B. Google Limited Use Requirements</h3>
+                            <h3 className="text-md font-bold text-slate-900 mt-6 mb-3">B. Google Limited Use Requirements</h3>
                             <p>By using the Google Add-on, you agree to the following mandatory limitations on our use of Google-sourced data:</p>
                             <ol className="list-decimal pl-6 space-y-3">
                                 <li><strong>Limited Use:</strong> ThefinU's use of data obtained from Google APIs (including data from your Google Sheets or your Google Account information) is strictly limited to providing and improving the features of the Services that are visible to the user.</li>
@@ -88,34 +88,34 @@ export default function TermsPage() {
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-bold text-slate-900 mt-12 mb-4">5. Limitation of Liability and Warranties</h2>
-                            <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">A. Disclaimer of Warranties</h3>
+                            <h2 className="text-xl font-bold text-slate-900 mt-12 mb-4">5. Limitation of Liability and Warranties</h2>
+                            <h3 className="text-md font-bold text-slate-900 mt-6 mb-3">A. Disclaimer of Warranties</h3>
                             <p className="uppercase text-sm tracking-wide text-slate-500 line-clamp-none">
                                 THE SERVICES AND ALL INFORMATION, PRODUCTS, AND OTHER CONTENT INCLUDED IN OR ACCESSIBLE FROM THE SITE AND SERVICES ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS. THEFINU AND ITS SERVICE PROVIDERS (INCLUDING PLAID) EXPRESSLY DISCLAIM ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
                             </p>
-                            <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">B. Limitation of Liability</h3>
+                            <h3 className="text-md font-bold text-slate-900 mt-6 mb-3">B. Limitation of Liability</h3>
                             <p className="uppercase text-sm tracking-wide text-slate-500">
                                 YOU EXPRESSLY ACKNOWLEDGE AND AGREE that ThefinU, its service providers (including Plaid), and their respective affiliates shall not be liable for any direct, indirect, incidental, special, consequential, punitive, or exemplary damages, resulting from: (i) the use or inability to use the Services; (ii) the cost of procurement of substitute goods and services; or (iii) unauthorized access to or alteration of your data.
                             </p>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-bold text-slate-900 mt-12 mb-4">6. Governing Law and Dispute Resolution</h2>
-                            <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">A. Governing Law</h3>
+                            <h2 className="text-xl font-bold text-slate-900 mt-12 mb-4">6. Governing Law and Dispute Resolution</h2>
+                            <h3 className="text-md font-bold text-slate-900 mt-6 mb-3">A. Governing Law</h3>
                             <p>
                                 You agree that your relationship with ThefinU under these Terms shall be governed by and construed in accordance with the laws of the State of Colorado, United States of America.
                             </p>
-                            <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">B. Mandatory Binding Arbitration</h3>
+                            <h3 className="text-md font-bold text-slate-900 mt-6 mb-3">B. Mandatory Binding Arbitration</h3>
                             <p>
                                 You and ThefinU agree that any dispute, claim, or controversy shall be settled by mandatory and binding arbitration in Denver County, Colorado, before one commercial arbitrator.
                             </p>
-                            <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">C. Waiver of Class Action</h3>
+                            <h3 className="text-md font-bold text-slate-900 mt-6 mb-3">C. Waiver of Class Action</h3>
                             <p>
                                 You and ThefinU further agree that any arbitration shall be conducted on an individual basis and not as a class, consolidated, or representative action. You expressly waive your right to have a court or a jury decide any dispute.
                             </p>
                         </section>
 
-                        <section className="border-t border-slate-100 pt-12 mt-16">
+                        <section className="border-t border-slate-100 pt-12">
                             <h2 className="text-2xl font-bold text-slate-900 mb-6 font-primary uppercase tracking-wider text-sm">Contact Information</h2>
                             <p className="text-slate-600 mb-4">
                                 <strong>Changes to Terms:</strong> We may revise these Terms at any time. All changes are effective immediately upon posting. Your continued use of the Services following the posting of revised Terms means you accept and agree to the changes.
